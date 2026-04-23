@@ -34,19 +34,17 @@ For GitHub Pages–style build (subpath), set `VITE_BASE_PATH` to `/<repo-name>/
 
 ### How fonts are applied in the **web** app (source of truth)
 
-1. **Face definitions** live in [`web/src/fonts.css`](web/src/fonts.css) — family name **`"Euclid Circular B"`**, weights 300–700, `url(.woff2/.otf)` only (no `local(...)` or other typeface names).
-2. **Global use** is set in [`web/src/index.css`](web/src/index.css) via:
-   - `--font-sans: "Euclid Circular B";` (no system UI font stack)
-   - `body { font-family: var(--font-sans); }`
-3. **Imports** in [`web/src/main.tsx`](web/src/main.tsx): `./fonts.css` is imported **before** `./index.css` so faces load first.
-4. **Binary files** (`.woff2` / `.otf`) go under **`web/public/fonts/`** — see [`web/public/fonts/README.txt`](web/public/fonts/README.txt). The bundler and GitHub Pages `base` path resolve `/fonts/...` correctly in dev and production when files exist.
+1. **Face definitions** live in [`web/src/fonts.css`](web/src/fonts.css) — family name **`"Euclid Circular B"`**, weights 300–700, **`url()` to ACKO’s CDN (woff2)** so **GitHub Pages** works without committing font files. [`web/index.html`](web/index.html) preloads the regular weight from the same CDN.
+2. **Global use** is in [`web/src/index.css`](web/src/index.css): `--font-sans: "Euclid Circular B";` and `body { font-family: var(--font-sans); }` (Euclid only; no system UI stack).
+3. **Imports** in [`web/src/main.tsx`](web/src/main.tsx): `./fonts.css` is imported **before** `./index.css`.
+4. **Optional** local files under `web/public/fonts/` are *not* required for the hosted app; see [`web/public/fonts/README.txt`](web/public/fonts/README.txt) if you want offline or self-hosted woff2 later.
 
 ### Basic rules (web)
 
 - **Do not** add a second, conflicting `@font-family` for body copy without aligning names and weights with `fonts.css` + `--font-sans`.
 - **Do not** rely on the repo-root [`fonts/font-euclid.css`](fonts/font-euclid.css) for the Vite app unless you explicitly import or link it; the app is driven by `web/src/fonts.css` and a different **family name** in that file would fight `"Euclid Circular B"`.
 - **Screen / flow pages** that intentionally override the default shell (e.g. Shivi on white) set `font-family: var(--font-sans)` in their own CSS to stay on Euclid.
-- If webfonts are missing, the browser may use its generic fallback; add licensed files to `web/public/fonts/` so Euclid loads everywhere.
+- If the CDN is blocked (network / ad-blocker), Euclid may not load; check devtools for failed `acko-cms.ackoassets.com` font requests.
 
 ### Alignment with `skills/typography.md`
 
