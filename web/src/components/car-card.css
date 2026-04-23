@@ -1,0 +1,353 @@
+.car-card {
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  background: var(--color-surface);
+  box-shadow: var(--shadow-card);
+  margin-bottom: 24px;
+}
+
+.car-card__media-wrap {
+  position: relative;
+  aspect-ratio: 320 / 180;
+  overflow: hidden;
+  background: var(--color-surface-elevated);
+}
+
+.car-card__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.car-card__overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 16px;
+  background: rgba(15, 20, 25, 0.82);
+  text-align: center;
+}
+
+.car-card__overlay-icon {
+  color: var(--color-text-secondary);
+}
+
+.car-card__overlay-text {
+  font-size: 0.8125rem;
+  color: var(--color-text-secondary);
+  max-width: 220px;
+}
+
+.car-card__body {
+  padding: 16px;
+}
+
+.car-card__rating {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 6px 3px 6px;
+  border-radius: var(--radius-sm);
+  background: var(--color-chip-bg);
+  font-size: 0.75rem;
+  color: var(--color-text-secondary);
+  margin-bottom: 12px;
+}
+
+.car-card__rating-star,
+.car-card__meta-icon,
+.car-card__shortlist-icon {
+  flex-shrink: 0;
+  display: block;
+}
+
+.car-card__title {
+  margin: 0 0 4px;
+  font-size: 1.125rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.car-card__variants {
+  margin: 0 0 8px;
+  font-size: 0.8125rem;
+  color: var(--color-text-secondary);
+  line-height: 1.4;
+}
+
+.car-card__meta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0 0 6px;
+  font-size: 0.8125rem;
+  color: var(--color-text-secondary);
+}
+
+.car-card__meta svg {
+  flex-shrink: 0;
+  opacity: 0.85;
+}
+
+.car-card__price-block {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--color-border);
+}
+
+.car-card__from {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.car-card__emi {
+  margin: 4px 0 0;
+  font-size: 0.8125rem;
+  color: var(--color-text-secondary);
+}
+
+.car-card__save {
+  margin: 8px 0 0;
+  font-size: 0.8125rem;
+  color: var(--color-success);
+}
+
+.car-card__actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.car-card__btn {
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-height: 40px;
+  padding: 0 12px;
+  border-radius: var(--radius-md);
+  font-size: 0.875rem;
+  font-weight: 500;
+  border: none;
+  text-decoration: none;
+  transition: opacity 0.15s;
+}
+
+.car-card__btn--ghost {
+  background: transparent;
+  border: 1px solid var(--color-border);
+  color: var(--color-text);
+}
+
+.car-card__btn--ghost:hover {
+  background: var(--color-chip-bg);
+}
+
+.car-card__btn--shortlist {
+  background: transparent;
+  border: 1px solid var(--color-border);
+  color: var(--color-text);
+}
+
+.car-card__btn--shortlist:hover {
+  background: var(--color-chip-bg);
+}
+
+.car-card__btn--disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.car-card__unavailable-actions {
+  margin-top: 12px;
+}
+
+.car-card__info-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  border-radius: var(--radius-md);
+  background: var(--color-chip-bg);
+  font-size: 0.8125rem;
+  color: var(--color-text-secondary);
+}
+
+/* ACKO Drive / Figma 271:2397 */
+.car-card--drive {
+  border-radius: 12px;
+  background: #ffffff;
+  border: 1px solid #e8e8e8;
+  box-shadow: 0 0 8px -2px rgba(54, 53, 76, 0.1);
+  margin-bottom: 24px;
+}
+
+.car-card--drive .car-card__media-wrap {
+  aspect-ratio: 320 / 180;
+  background: #eaeaea;
+  border-radius: 12px 12px 0 0;
+}
+
+.car-card--drive .car-card__img {
+  object-position: center;
+}
+
+.car-card--drive .car-card__body {
+  padding: 16px;
+}
+
+.car-card--drive .car-card__rating {
+  margin-bottom: 12px;
+  padding: 3px 6px;
+  min-height: 24px;
+  border-radius: 4px;
+  background: #f5f5f5;
+  font-size: 11px;
+  line-height: 18px;
+  font-weight: 500;
+  color: #121212;
+  gap: 6px;
+}
+
+.car-card--drive .car-card__rating-star {
+  flex-shrink: 0;
+}
+
+.car-card__meta-icon {
+  flex-shrink: 0;
+  display: block;
+}
+
+.car-card__shortlist-icon {
+  flex-shrink: 0;
+  display: block;
+}
+
+.car-card--drive .car-card__title {
+  margin: 0 0 4px;
+  font-size: 16px;
+  line-height: 22px;
+  font-weight: 600;
+  color: #121212;
+}
+
+.car-card--drive .car-card__variants {
+  margin: 0 0 8px;
+  font-size: 12px;
+  line-height: 18px;
+  color: #757575;
+}
+
+.car-card--drive .car-card__meta--delivery-express {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 4px;
+  margin: 0 0 8px;
+  font-size: 12px;
+  line-height: 18px;
+  font-weight: 400;
+  color: #5920c5;
+}
+
+.car-card--drive .car-card__meta--delivery-express .car-card__meta-icon {
+  flex-shrink: 0;
+  opacity: 1;
+}
+
+.car-card--drive .car-card__meta--wait-drive {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin: 0 0 8px;
+  font-size: 12px;
+  line-height: 18px;
+  color: #121212;
+}
+
+.car-card--drive .car-card__meta--wait-drive svg {
+  opacity: 1;
+}
+
+.car-card--drive .car-card__price-block {
+  margin-top: 12px;
+  padding-top: 0;
+  border-top: none;
+}
+
+.car-card--drive .car-card__from {
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 500;
+  color: #121212;
+}
+
+.car-card--drive .car-card__emi {
+  margin-top: 4px;
+  font-size: 12px;
+  line-height: 18px;
+  color: #757575;
+}
+
+.car-card--drive .car-card__save--drive {
+  margin: 8px 0 0;
+  font-size: 12px;
+  line-height: 18px;
+  font-weight: 400;
+  color: #4b4b4b;
+}
+
+.car-card--drive .car-card__save-highlight {
+  font-weight: 500;
+  color: #0fa457;
+}
+
+.car-card--drive .car-card__actions {
+  margin-top: 16px;
+  gap: 12px;
+}
+
+.car-card--drive .car-card__btn--ghost {
+  flex: 1 1 0;
+  min-width: 0;
+  min-height: 40px;
+  border-radius: 12px;
+  border: 1px solid #121212;
+  background: transparent;
+  color: #121212;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 500;
+}
+
+.car-card--drive .car-card__btn--ghost:hover {
+  background: #f5f5f5;
+}
+
+.car-card--drive .car-card__btn--shortlist {
+  flex: 1 1 0;
+  min-width: 0;
+  min-height: 40px;
+  border-radius: 12px;
+  border: none;
+  background: #121212;
+  color: #ffffff;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 500;
+}
+
+.car-card--drive .car-card__btn--shortlist svg {
+  color: #ffffff;
+}
+
+.car-card--drive .car-card__btn--shortlist:hover {
+  background: #2a2a2a;
+}

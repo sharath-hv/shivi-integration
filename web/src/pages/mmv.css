@@ -1,0 +1,369 @@
+/* MMV page — Figma node 253:12803 (dark theme) */
+
+.mobile-shell--mmv {
+  background: #121212;
+}
+
+.mobile-shell--mmv .mobile-shell__inner {
+  background: #121212;
+  box-shadow: 0 0 0 1px #1e1e1e;
+}
+
+.mmv {
+  min-height: 100vh;
+  min-height: 100dvh;
+  padding: 0 0 calc(32px + env(safe-area-inset-bottom));
+  color: #ffffff;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.mmv__header {
+  padding: 56px 20px 0;
+  text-align: center;
+}
+
+.mmv__title {
+  margin: 0;
+  font-size: 24px;
+  line-height: 30px;
+  font-weight: 600;
+  letter-spacing: -0.1px;
+  color: #ffffff;
+}
+
+.mmv__spec {
+  margin: 8px 0 0;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400;
+  color: rgba(166, 166, 166, 1);
+}
+
+.mmv__hero {
+  margin-top: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mmv__car {
+  width: 218px;
+  max-width: calc(100% - 40px);
+  height: 120px;
+  object-fit: contain;
+  filter: drop-shadow(0 20px 32px rgba(0, 0, 0, 0.5));
+}
+
+.mmv__colour-name {
+  margin: 20px 0 0;
+  text-align: center;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+  letter-spacing: -0.1px;
+  color: #ffffff;
+}
+
+.mmv__swatches {
+  margin-top: 16px;
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  padding: 0 20px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.mmv__swatches::-webkit-scrollbar {
+  display: none;
+}
+
+.mmv__swatch {
+  flex-shrink: 0;
+  position: relative;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  border-radius: 60px;
+  cursor: pointer;
+}
+
+.mmv__swatch-fill {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 60px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.mmv__swatch-check {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.55));
+}
+
+.mmv__swatch:focus-visible {
+  outline: 2px solid #8ce99a;
+  outline-offset: 3px;
+  border-radius: 60px;
+}
+
+/* Price card */
+.mmv__price-card {
+  margin: 24px 20px 0;
+  padding: 16px;
+  background: #171717;
+  border: 1px solid #363636;
+  border-radius: 16px;
+}
+
+.mmv__price-label {
+  margin: 0;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400;
+  color: rgba(166, 166, 166, 1);
+}
+
+.mmv__price-row {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 4px 12px;
+  margin-top: 8px;
+}
+
+.mmv__price-main {
+  font-size: 20px;
+  line-height: 28px;
+  font-weight: 600;
+  letter-spacing: -0.1px;
+  color: #ffffff;
+}
+
+.mmv__price-dealer {
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+  color: #a6a6a6;
+  text-decoration: line-through;
+}
+
+.mmv__price-save {
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400;
+  color: #8ce99a;
+}
+
+.mmv__price-divider {
+  height: 1px;
+  margin: 16px 0;
+  background: #2b2b2b;
+}
+
+.mmv__delivery {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 24px;
+}
+
+.mmv__delivery-main {
+  flex: 1;
+  min-width: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.mmv__delivery-icon {
+  flex-shrink: 0;
+  color: #b191ed;
+}
+
+.mmv__delivery-copy {
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400;
+}
+
+.mmv__delivery-em {
+  color: #b191ed;
+}
+
+.mmv__delivery-by {
+  color: #ffffff;
+}
+
+.mmv__delivery-date {
+  color: #ffffff;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 500;
+}
+
+.mmv__delivery-chevron {
+  display: inline-flex;
+  color: #a6a6a6;
+}
+
+.mmv__cta {
+  display: block;
+  width: 100%;
+  margin-top: 20px;
+  padding: 12px 20px;
+  min-height: 48px;
+  border: none;
+  border-radius: 12px;
+  background: #ffffff;
+  color: #121212;
+  font-family: inherit;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 500;
+  text-align: center;
+  cursor: pointer;
+}
+
+.mmv__cta:hover {
+  background: #f5f5f5;
+}
+
+.mmv__cta:focus-visible {
+  outline: 2px solid #1b73e8;
+  outline-offset: 2px;
+}
+
+/* Shivi module — Figma node 297:40065 */
+.mmv__shivi {
+  margin: 16px 20px 0;
+  padding: 16px;
+  overflow: hidden;
+  background: linear-gradient(180deg, #171717 0%, #072211 100%);
+  border: 1px solid #363636;
+  border-radius: 16px;
+}
+
+.mmv__shivi-top {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.mmv__shivi-avatar-slot {
+  position: relative;
+  width: 56px;
+  height: 56px;
+  flex-shrink: 0;
+}
+
+.mmv__shivi-photo {
+  width: 56px;
+  height: 56px;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #f5f5f5;
+}
+
+.mmv__shivi-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Figma: online dot at x=59 from card; padding-x=15 → 44px from avatar slot left */
+.mmv__shivi-online {
+  position: absolute;
+  left: 44px;
+  top: 0;
+  width: 12px;
+  height: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mmv__shivi-online-img {
+  display: block;
+}
+
+.mmv__shivi-copy {
+  flex: 1;
+  min-width: 0;
+  padding-top: 0px;
+}
+
+.mmv__shivi-headline {
+  margin: 0;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 500;
+  color: #ffffff;
+}
+
+.mmv__shivi-sub {
+  margin: 8px 0 0;
+  font-size: 12px;
+  line-height: 18px;
+  font-weight: 400;
+  color: #a6a6a6;
+}
+
+.mmv__shivi-cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-top: 20px;
+  padding: 10px 20px;
+  min-height: 48px;
+  box-sizing: border-box;
+  border: 1px solid #e8e8e8;
+  border-radius: 12px;
+  background: transparent;
+  color: #ffffff;
+  font-family: inherit;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 500;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.mmv__shivi-cta:hover {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.mmv__shivi-cta:focus-visible {
+  outline: 2px solid #8ce99a;
+  outline-offset: 2px;
+}
+
+/* Not-found fallback */
+.mmv-not-found {
+  padding: 40px 20px;
+  text-align: center;
+  color: #ffffff;
+}
+
+.mmv-not-found h1 {
+  margin: 0 0 12px;
+  font-size: 20px;
+  line-height: 28px;
+  font-weight: 600;
+}
+
+.mmv-not-found a {
+  color: #8ce99a;
+}

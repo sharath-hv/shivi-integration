@@ -1,0 +1,37 @@
+.mobile-shell {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  background: var(--color-bg);
+}
+
+.mobile-shell__inner {
+  width: 100%;
+  max-width: var(--mobile-max);
+  min-height: 100vh;
+  position: relative;
+  background: var(--color-bg);
+  box-shadow: 0 0 0 1px var(--color-border);
+}
+
+.mobile-shell--drive-listing {
+  background: #f5f5f5;
+}
+
+body:has(.mobile-shell--drive-listing) {
+  overscroll-behavior-y: none;
+}
+
+.mobile-shell--drive-listing .mobile-shell__inner {
+  background: #ffffff;
+  box-shadow: 0 0 0 1px #e8e8e8;
+}
+
+.mobile-shell--shivi-intro {
+  background: #f5f5f5;
+}
+
+.mobile-shell--shivi-intro .mobile-shell__inner {
+  background: #ffffff;
+  box-shadow: 0 0 0 1px #e8e8e8;
+}

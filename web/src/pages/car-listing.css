@@ -1,0 +1,148 @@
+/* ACKO Drive listing — light theme (Figma node 271:2397) */
+
+.car-listing-page {
+  min-height: 100vh;
+  color: #121212;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.listing-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 16px 14px 16px 14px;
+  min-height: 56px;
+  background: #ffffff;
+}
+
+.listing-topbar__city {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 8px;
+  border-radius: 8px;
+  border: 1px solid #121212;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(6px);
+  font-size: 12px;
+  line-height: 18px;
+  font-weight: 400;
+  color: #121212;
+}
+
+.listing-page-title {
+  margin: 0;
+  padding: 8px 20px 16px;
+  font-size: 24px;
+  line-height: 32px;
+  font-weight: 600;
+  letter-spacing: -0.1px;
+  color: #121212;
+}
+
+.listing-search--drive {
+  margin: 0 20px 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 44px;
+  padding: 12px;
+  border-radius: 12px;
+  background: #ffffff;
+  border: 1px solid #e2e2e2;
+}
+
+.listing-search--drive .listing-icon {
+  flex-shrink: 0;
+}
+
+.listing-icon {
+  display: block;
+}
+
+.listing-search--drive input {
+  flex: 1;
+  min-width: 0;
+  border: none;
+  background: transparent;
+  color: #121212;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 20px;
+  outline: none;
+}
+
+.listing-search--drive input::placeholder {
+  color: #4b4b4b;
+}
+
+.listing-chips--drive {
+  display: flex;
+  gap: 8px;
+  padding: 0 20px 20px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.listing-chips--drive::-webkit-scrollbar {
+  display: none;
+}
+
+.listing-chip-drive {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  height: 28px;
+  padding: 8px;
+  border-radius: 24px;
+  border: 1px solid #e2e2e2;
+  background: #ffffff;
+  font-family: inherit;
+  font-size: 12px;
+  line-height: 18px;
+  font-weight: 500;
+  color: #121212;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.listing-chip-drive:hover {
+  background: #fafafa;
+}
+
+.listing-chip-drive:focus-visible {
+  outline: 2px solid #1b73e8;
+  outline-offset: 2px;
+}
+
+.listing-chip-drive--sort {
+  gap: 8px;
+  border-color: #e8e8e8;
+}
+
+.listing-chip-drive__sort-label {
+  font-weight: 400;
+  color: #757575;
+}
+
+.listing-chip-drive__sort-value {
+  font-weight: 500;
+  color: #121212;
+}
+
+.listing-chip-drive--express {
+  gap: 8px;
+  border-color: #e8e8e8;
+}
+
+.listing-chip-drive--express svg {
+  color: #121212;
+}
+
+.listing-cards--drive {
+  padding: 0 20px;
+}

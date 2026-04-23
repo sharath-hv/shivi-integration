@@ -1,0 +1,490 @@
+/* Shivi cold start — Figma node 253:10659 (light / ACKO Drive) */
+/* Car context strip — Figma Shivi AD integration node 300:53948 (MMV → Shivi) */
+
+.shivi-intro {
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  padding: 0 0 108px; /* CTA panel height to prevent overlap */
+  background: #ffffff;
+  color: #121212;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.shivi-intro__top {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 56px;
+  padding: 16px 20px 16px 14px;
+}
+
+.shivi-intro__back {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  margin: -8px 0 -8px -8px;
+  border: none;
+  background: transparent;
+  color: #121212;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.shivi-intro__back:hover {
+  background: #f5f5f5;
+}
+
+.shivi-intro__back:focus-visible {
+  outline: 2px solid #1b73e8;
+  outline-offset: 2px;
+}
+
+.shivi-intro__callback-notice {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px 20px;
+  margin: 0;
+  background: #e8f4fd;
+  border-top: 1px solid #cfe8fc;
+}
+
+.shivi-intro__footer--callback-scheduled .shivi-intro__callback-notice {
+  padding-bottom: max(16px, env(safe-area-inset-bottom));
+}
+
+.shivi-intro__callback-notice p {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  text-align: center;
+  color: #121212;
+}
+
+.shivi-intro__hero {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 8px 20px 0;
+  width: 100%;
+  max-width: 360px;
+}
+
+.shivi-intro__avatar {
+  width: 56px;
+  height: 56px;
+  flex-shrink: 0;
+  position: relative;
+  overflow: visible;
+}
+
+.shivi-intro__avatar-photo {
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #f5f5f5;
+}
+
+.shivi-intro__avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.shivi-intro__avatar-online {
+  position: absolute;
+  left: 44px;
+  top: 0;
+  width: 12px;
+  height: 12px;
+  z-index: 1;
+  display: block;
+}
+
+.shivi-intro__greeting {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+
+.shivi-intro__hi {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  color: #121212;
+}
+
+.shivi-intro__tagline {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 30px;
+  letter-spacing: -0.1px;
+  color: #121212;
+}
+
+.shivi-intro__context-sub {
+  margin: 0;
+  max-width: 320px;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  color: #757575;
+}
+
+/* Shivi_car context — Figma node 253:11434 */
+.shivi-intro__price-card {
+  width: 320px;
+  max-width: calc(100% - 40px);
+  margin: 20px auto 0;
+  padding: 11px;
+  box-sizing: border-box;
+  border-radius: 16px;
+  border: 1px solid #e8e8e8;
+  background: #ffffff;
+  box-shadow: 0 0 6px -2px rgba(54, 53, 76, 0.08);
+}
+
+.shivi-intro__price-card-top {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  height: 46px;
+}
+
+.shivi-intro__price-card-thumb-slot {
+  flex-shrink: 0;
+  width: 80px;
+  height: 46px;
+  border-radius: 4px;
+  overflow: hidden;
+  background: transparent;
+}
+
+.shivi-intro__price-card-thumb {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+.shivi-intro__price-card-identity {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.shivi-intro__price-card-name {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  color: #121212;
+}
+
+.shivi-intro__price-card-variant {
+  margin: 0;
+  font-size: 10px;
+  font-weight: 400;
+  line-height: 14px;
+  color: #4b4b4b;
+}
+
+.shivi-intro__price-card-sep {
+  color: #4b4b4b;
+}
+
+.shivi-intro__price-card-box {
+  position: relative;
+  margin-top: 12px;
+  padding: 11px;
+  border-radius: 8px;
+  border: 1px solid #e0ede3;
+  background: linear-gradient(180deg, #ffffff 0%, #ebfbee 100%);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.shivi-intro__price-card-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.shivi-intro__price-card-row-label {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 18px;
+  color: #757575;
+}
+
+.shivi-intro__price-card-row-label--total {
+  font-size: 14px;
+  line-height: 20px;
+  color: #121212;
+}
+
+.shivi-intro__price-card-row-value {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 18px;
+  color: #121212;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.shivi-intro__price-card-row-value--discount {
+  color: #0fa457;
+  font-weight: 500;
+}
+
+.shivi-intro__price-card-row-value--total {
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 500;
+}
+
+.shivi-intro__price-card-divider {
+  height: 1px;
+  margin: 0 -11px;
+  background: #e0ede3;
+}
+
+.shivi-intro__price-card-footnote {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin: 12px 12px 0;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 18px;
+  color: #121212;
+}
+
+.shivi-intro__price-card-footnote-icon {
+  flex-shrink: 0;
+  color: #121212;
+}
+
+.shivi-intro__help-block--context .shivi-intro__section-label {
+  margin: 32px auto 12px;
+  width: 320px;
+  max-width: calc(100% - 40px);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 18px;
+  color: rgba(117, 117, 117, 1);
+}
+
+.shivi-intro__section-label {
+  margin: 32px 20px 12px;
+  max-width: 320px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  color: #4b4b4b;
+}
+
+.shivi-intro__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  padding: 0 20px;
+  width: 100%;
+  max-width: 360px;
+  box-sizing: border-box;
+}
+
+.shivi-intro__grid--context {
+  grid-template-columns: 1fr 1fr 1fr;
+  width: 320px;
+  max-width: calc(100% - 40px);
+  margin: 0 auto;
+  padding: 0;
+}
+
+.shivi-intro__tile {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 16px 12px;
+  border-radius: 16px;
+  border: 1px solid #f1f1f1;
+  background: linear-gradient(180deg, #ffffff 0%, #f5f5f5 100%);
+  text-align: left;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.shivi-intro__grid--context .shivi-intro__tile {
+  gap: 8px;
+  padding: 12px;
+  min-width: 0;
+}
+
+.shivi-intro__grid--context .shivi-intro__tile-text {
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 18px;
+}
+
+.shivi-intro__grid--context .shivi-intro__tile-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.shivi-intro__intro-block,
+.shivi-intro__help-block {
+  width: 100%;
+}
+
+.shivi-intro__help-block {
+  margin-bottom: 32px;
+}
+
+.shivi-intro__tile-icon {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  color: #121212;
+}
+
+/* Rasterised SVG/PNG from /assets (img, not currentColor) */
+.shivi-intro__tile-icon--asset {
+  display: block;
+  object-fit: contain;
+}
+
+.shivi-intro__tile-text {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  color: #121212;
+}
+
+.shivi-intro__footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 100;
+}
+
+.shivi-intro__trust-banner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 32px;
+  padding: 8px 20px;
+  background: #ebfbee;
+}
+
+.shivi-intro__trust-banner p {
+  margin: 0;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 18px;
+  text-align: center;
+  color: #121212;
+}
+
+.shivi-intro__cta-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 20px 16px;
+  padding-bottom: max(16px, env(safe-area-inset-bottom));
+  background: #FFF;
+  box-shadow: 0 -4px 8px -2px rgba(54, 53, 76, 0.06);
+}
+
+.shivi-intro__cta {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.shivi-intro__cta--primary {
+  width: 100%;
+  max-width: 320px;
+  min-height: 48px;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 8px;
+  background: #121212;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  transition: filter 0.2s ease, transform 0.2s ease;
+}
+
+.shivi-intro__cta--primary:hover {
+  filter: brightness(1.08);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .shivi-intro__cta--primary:hover {
+    transform: translateY(-1px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .shivi-intro__cta--primary {
+    transition: filter 0.2s ease;
+  }
+
+  .shivi-intro__cta--primary:hover {
+    transform: none;
+  }
+}
+
+.shivi-intro__cta--primary:focus-visible {
+  outline: 2px solid #1b73e8;
+  outline-offset: 2px;
+}
+
+.shivi-intro__cta-link {
+  padding: 0;
+  border: none;
+  background: none;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  color: #1b73e8;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.shivi-intro__cta-link:hover {
+  text-decoration: underline;
+}
+
+.shivi-intro__cta-link:focus-visible {
+  outline: 2px solid #1b73e8;
+  outline-offset: 2px;
+  border-radius: 4px;
+}

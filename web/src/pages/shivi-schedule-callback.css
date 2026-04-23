@@ -1,0 +1,265 @@
+/* Shivi timeslot selection — Figma node 253:11112 */
+
+.shivi-schedule {
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  padding: 0 0 env(safe-area-inset-bottom);
+  background: #ffffff;
+  color: #121212;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.shivi-schedule__top {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 56px;
+  padding: 16px 20px 16px 14px;
+  flex-shrink: 0;
+}
+
+.shivi-schedule__back {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  margin: -8px 0 -8px -8px;
+  border: none;
+  background: transparent;
+  color: #121212;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.shivi-schedule__back:hover {
+  background: #f5f5f5;
+}
+
+.shivi-schedule__back:focus-visible {
+  outline: 2px solid #1b73e8;
+  outline-offset: 2px;
+}
+
+.shivi-schedule__main {
+  flex: 1;
+  width: 100%;
+  max-width: 360px;
+  margin: 0 auto;
+  padding: 0 20px 24px;
+  box-sizing: border-box;
+}
+
+.shivi-schedule__title {
+  margin: 0;
+  max-width: 320px;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 32px;
+  letter-spacing: -0.1px;
+  color: #121212;
+}
+
+.shivi-schedule__days {
+  display: flex;
+  gap: 16px;
+  margin-top: 24px;
+  width: 100%;
+}
+
+.shivi-schedule__day {
+  flex: 1 0 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 8px 12px;
+  border-radius: 12px;
+  border: 1px solid #e8e8e8;
+  background: #ffffff;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.shivi-schedule__day:hover {
+  background: #fafafa;
+}
+
+.shivi-schedule__day:focus-visible {
+  outline: 2px solid #1b73e8;
+  outline-offset: 2px;
+}
+
+.shivi-schedule__day--selected {
+  background: #f3f3f3;
+  border-color: #121212;
+}
+
+.shivi-schedule__day-label {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 14px;
+  color: #4b4b4b;
+}
+
+.shivi-schedule__day-date {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  color: #121212;
+}
+
+.shivi-schedule__slots-section {
+  margin-top: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.shivi-schedule__slots-heading {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  color: #757575;
+}
+
+.shivi-schedule__slots {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.shivi-schedule__slot {
+  width: 100%;
+  min-height: 48px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid #e8e8e8;
+  background: #ffffff;
+  color: #121212;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.shivi-schedule__slot:hover {
+  background: #fafafa;
+}
+
+.shivi-schedule__slot:focus-visible {
+  outline: 2px solid #1b73e8;
+  outline-offset: 2px;
+}
+
+.shivi-schedule__slot--selected {
+  background: #f5f5f5;
+  border-color: #121212;
+  font-weight: 500;
+}
+
+.shivi-schedule__footer {
+  position: sticky;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  padding: 12px 20px 20px;
+  padding-bottom: max(20px, env(safe-area-inset-bottom));
+  background: #ffffff;
+  box-shadow: 0 -4px 8px 0 rgba(54, 53, 76, 0.06);
+  box-sizing: border-box;
+}
+
+.shivi-schedule__cta {
+  width: 100%;
+  min-height: 48px;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 8px;
+  background: #121212;
+  color: #ffffff;
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  cursor: pointer;
+  transition: filter 0.2s ease, transform 0.2s ease;
+}
+
+.shivi-schedule__cta:hover {
+  filter: brightness(1.08);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .shivi-schedule__cta:hover {
+    transform: translateY(-1px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .shivi-schedule__cta {
+    transition: filter 0.2s ease;
+  }
+
+  .shivi-schedule__cta:hover {
+    transform: none;
+  }
+}
+
+.shivi-schedule__cta:focus-visible {
+  outline: 2px solid #1b73e8;
+  outline-offset: 2px;
+}
+
+.shivi-schedule__sooner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin: 0;
+  font-size: 14px;
+  line-height: 20px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.shivi-schedule__sooner-text {
+  color: #757575;
+  font-weight: 400;
+}
+
+.shivi-schedule__sooner-link {
+  padding: 0;
+  border: none;
+  background: none;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  color: #1b73e8;
+  cursor: pointer;
+}
+
+.shivi-schedule__sooner-link:hover {
+  text-decoration: underline;
+}
+
+.shivi-schedule__sooner-link:focus-visible {
+  outline: 2px solid #1b73e8;
+  outline-offset: 2px;
+  border-radius: 4px;
+}

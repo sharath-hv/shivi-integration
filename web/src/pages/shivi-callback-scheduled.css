@@ -1,0 +1,173 @@
+/* Callback scheduled — Figma node 253:11179 */
+
+.shivi-callback-scheduled {
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  padding: 0 0 env(safe-area-inset-bottom);
+  background: #ffffff;
+  color: #121212;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.shivi-callback-scheduled__top {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 56px;
+  padding: 16px 20px 16px 14px;
+  flex-shrink: 0;
+}
+
+.shivi-callback-scheduled__back {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  margin: -8px 0 -8px -8px;
+  border: none;
+  background: transparent;
+  color: #121212;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.shivi-callback-scheduled__back:hover {
+  background: #f5f5f5;
+}
+
+.shivi-callback-scheduled__back:focus-visible {
+  outline: 2px solid #1b73e8;
+  outline-offset: 2px;
+}
+
+.shivi-callback-scheduled__main {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 24px 20px 32px;
+  max-width: 360px;
+  width: 100%;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.shivi-callback-scheduled__illustration {
+  display: block;
+  box-sizing: border-box;
+  width: 104px;
+  height: 104px;
+  min-width: 104px;
+  min-height: 104px;
+  max-width: 104px;
+  max-height: 104px;
+  margin: 0 0 20px;
+  flex-shrink: 0;
+  object-fit: contain;
+}
+
+.shivi-callback-scheduled__copy {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  max-width: 320px;
+}
+
+.shivi-callback-scheduled__title {
+  margin: 0;
+  width: 100%;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 28px;
+  letter-spacing: -0.1px;
+  color: #121212;
+}
+
+.shivi-callback-scheduled__chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  background: #f5f5f5;
+}
+
+.shivi-callback-scheduled__chip-icon {
+  flex-shrink: 0;
+  color: #121212;
+}
+
+.shivi-callback-scheduled__chip-text {
+  margin: 0;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 18px;
+  color: #121212;
+  white-space: nowrap;
+}
+
+.shivi-callback-scheduled__footer {
+  margin-top: auto;
+  width: 100%;
+}
+
+.shivi-callback-scheduled__cta-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  padding: 12px 20px 20px;
+  padding-bottom: max(20px, env(safe-area-inset-bottom));
+  background: #ffffff;
+  box-shadow: 0 -4px 8px -2px rgba(54, 53, 76, 0.06);
+}
+
+.shivi-callback-scheduled__cta {
+  width: 100%;
+  min-height: 48px;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 8px;
+  background: #121212;
+  color: #ffffff;
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  cursor: pointer;
+  transition: filter 0.2s ease, transform 0.2s ease;
+}
+
+.shivi-callback-scheduled__cta:hover {
+  filter: brightness(1.08);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .shivi-callback-scheduled__cta:hover {
+    transform: translateY(-1px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .shivi-callback-scheduled__cta {
+    transition: filter 0.2s ease;
+  }
+
+  .shivi-callback-scheduled__cta:hover {
+    transform: none;
+  }
+}
+
+.shivi-callback-scheduled__cta:focus-visible {
+  outline: 2px solid #1b73e8;
+  outline-offset: 2px;
+}

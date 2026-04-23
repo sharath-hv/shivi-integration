@@ -1,0 +1,59 @@
+/**
+ * Euclid Circular B — ACKO typography (skills/primitives.md)
+ * Add files under /public/fonts/ (see public/fonts/README.txt).
+ */
+@font-face {
+  font-family: "Euclid Circular B";
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src:
+    local("Euclid Circular B Light"),
+    url("/fonts/EuclidCircularB-Light.woff2") format("woff2"),
+    url("/fonts/EuclidCircularB-Light.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "Euclid Circular B";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src:
+    local("Euclid Circular B"),
+    local("EuclidCircularB-Regular"),
+    url("/fonts/EuclidCircularB-Regular.woff2") format("woff2"),
+    url("/fonts/EuclidCircularB-Regular.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "Euclid Circular B";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src:
+    local("Euclid Circular B Medium"),
+    url("/fonts/EuclidCircularB-Medium.woff2") format("woff2"),
+    url("/fonts/EuclidCircularB-Medium.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "Euclid Circular B";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src:
+    local("Euclid Circular B SemiBold"),
+    url("/fonts/EuclidCircularB-SemiBold.woff2") format("woff2"),
+    url("/fonts/EuclidCircularB-SemiBold.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "Euclid Circular B";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src:
+    local("Euclid Circular B Bold"),
+    url("/fonts/EuclidCircularB-Bold.woff2") format("woff2"),
+    url("/fonts/EuclidCircularB-Bold.otf") format("opentype");
+}
