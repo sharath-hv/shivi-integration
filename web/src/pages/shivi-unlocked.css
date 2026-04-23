@@ -1,0 +1,65 @@
+/* Shivi discount unlocked — Figma node 312:68392 (MMV post-conversation) */
+
+/* Fixed footer now has yellow expiry strip + CTA panel; give the scroll body more room. */
+.mobile-shell--shivi-intro .shivi-intro:has(.shivi-unlocked__expiry) {
+  padding-bottom: 140px;
+}
+
+.shivi-unlocked__price-card-row-value--exclusive {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+}
+
+/* On the unlocked page, ACKO Drive discount is rendered in green (Figma 313:68531). */
+.shivi-intro .shivi-intro__price-card-row-value--discount {
+  color: #0fa457;
+}
+
+.shivi-unlocked__expiry {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-height: 32px;
+  padding: 8px 20px;
+  background: #fff7e5;
+  color: #d16900;
+}
+
+.shivi-unlocked__expiry p {
+  margin: 0;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 18px;
+  text-align: center;
+  color: #d16900;
+}
+
+.shivi-unlocked__expiry-icon {
+  flex-shrink: 0;
+  color: #d16900;
+}
+
+.shivi-unlocked__callback-link {
+  padding: 0;
+  border: none;
+  background: none;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  color: #1b73e8;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.shivi-unlocked__callback-link:hover {
+  text-decoration: underline;
+}
+
+.shivi-unlocked__callback-link:focus-visible {
+  outline: 2px solid #1b73e8;
+  outline-offset: 2px;
+  border-radius: 4px;
+}

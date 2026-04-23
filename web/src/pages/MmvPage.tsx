@@ -5,6 +5,7 @@ import { MobileShell } from "../components/MobileShell";
 import { getCarById } from "../data/cars";
 import { ASSETS } from "../lib/assets";
 import { buildShiviIntroPath } from "../lib/shiviIntroContext";
+import { formatInrDisplayAsLakh } from "../lib/mmvPriceFormat";
 import "./mmv.css";
 
 /** Figma: Shivi AD integration — node 253:12803 (MMVC) */
@@ -89,10 +90,14 @@ export function MmvPage() {
         <section className="mmv__price-card" aria-label="Pricing">
           <p className="mmv__price-label">{mmv.cityPriceLabel}</p>
           <div className="mmv__price-row">
-            <span className="mmv__price-main">{mmv.ackoPriceDisplay}</span>
+            <span className="mmv__price-main">
+              {formatInrDisplayAsLakh(mmv.ackoPriceDisplay)}
+            </span>
             {!car.unavailable ? (
               <>
-                <span className="mmv__price-dealer">{mmv.dealerPriceDisplay}</span>
+                <span className="mmv__price-dealer">
+                  {formatInrDisplayAsLakh(mmv.dealerPriceDisplay)}
+                </span>
                 <span className="mmv__price-save">{mmv.saveAmountDisplay}</span>
               </>
             ) : null}

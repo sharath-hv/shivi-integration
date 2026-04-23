@@ -1,5 +1,5 @@
-import { useEffect, useMemo, useState } from "react";
-import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
+import { useMemo } from "react";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { motion, useReducedMotion } from "framer-motion";
 import { AssetIcon } from "../components/AssetIcon";
 import { MobileShell } from "../components/MobileShell";
@@ -10,29 +10,22 @@ import {
   SHIVI_INTRO_COLOUR_QUERY,
 } from "../lib/shiviIntroContext";
 import "./shivi-intro.css";
+import "./shivi-unlocked.css";
 
-const TILES_DEFAULT: { title: string; iconSrc: string }[] = [
-  { title: "Get a dealer-beating price", iconSrc: ASSETS.shiviTileCarPrice },
-  { title: "Compare cars that you like", iconSrc: ASSETS.shiviTileCompareCars },
-  { title: "Sort out car finance", iconSrc: ASSETS.shiviTileCarFinance },
-  { title: "Answer any questions you have", iconSrc: ASSETS.shiviTileAnswerQuestions },
-];
-
-/** Shivi_car context — Figma node 253:11434 (context-aware help tiles). */
+/** Figma: Shivi AD integration — node 312:68392 (post-conversation, MMV flow). */
 const TILES_CAR_CONTEXT: { title: string; iconSrc: string }[] = [
   { title: "Compare variants", iconSrc: ASSETS.shiviTileCompareCars },
   { title: "Loan options", iconSrc: ASSETS.shiviTileCarFinance },
   { title: "Clear your questions", iconSrc: ASSETS.shiviTileAnswerQuestions },
 ];
 
-/** Remove car name prefix from the variant title when it starts with it. */
-function variantShortLabel(carName: string, variantTitle: string): string {
-  if (variantTitle.toLowerCase().startsWith(carName.toLowerCase())) {
-    const rest = variantTitle.slice(carName.length).trim();
-    return rest || variantTitle;
-  }
-  return variantTitle;
-}
+const REVEAL_EASE: [number, number, number, number] = [0.25, 0.46, 0.45, 0.94];
+const REVEAL_S = 0.6;
+const DELAY_CONTEXT_S = 0.3;
+const DELAY_HELP_S = 0.6;
+const DELAY_CTA_S = 0.9;
+
+const DEFAULT_TAGLINE = "I’m Shivi, your car buying advisor";
 
 /** `Save ₹27,077` → `-₹27,077`. Falls back to the original string. */
 function toDiscountLabel(saveAmountDisplay: string): string {
@@ -43,28 +36,19 @@ function toDiscountLabel(saveAmountDisplay: string): string {
   return saveAmountDisplay;
 }
 
-const REVEAL_EASE: [number, number, number, number] = [0.25, 0.46, 0.45, 0.94];
-const REVEAL_S = 0.6;
-/** Subtle staggered loading: 1) header + avatar, 2) car context (MMV), 3) "Here's how" + cards, 4) trust + CTAs */
-const DELAY_CONTEXT_S = 0.3;
-const DELAY_HELP_S = 0.6;
-const DELAY_CTA_S = 0.9;
+/** Remove car name prefix from the variant title when it starts with it. */
+function variantShortLabel(carName: string, variantTitle: string): string {
+  if (variantTitle.toLowerCase().startsWith(carName.toLowerCase())) {
+    const rest = variantTitle.slice(carName.length).trim();
+    return rest || variantTitle;
+  }
+  return variantTitle;
+}
 
-const DEFAULT_TAGLINE = "I’m Shivi, your car buying advisor";
-
-export type ShiviIntroLocationState = {
-  showCallbackScheduled?: boolean;
-};
-
-export function ShiviIntroPage() {
+export function ShiviDiscountUnlockedPage() {
   const navigate = useNavigate();
-  const location = useLocation();
   const [searchParams] = useSearchParams();
   const reduceMotion = useReducedMotion();
-
-  const [showCallbackNotice] = useState(() =>
-    Boolean((location.state as ShiviIntroLocationState | null)?.showCallbackScheduled),
-  );
 
   const contextCarId = searchParams.get(SHIVI_INTRO_CAR_QUERY) ?? "";
   const contextColourIdParam = searchParams.get(SHIVI_INTRO_COLOUR_QUERY);
@@ -90,16 +74,6 @@ export function ShiviIntroPage() {
     );
   }, [contextCar, contextColourIdParam]);
 
-  useEffect(() => {
-    const s = location.state as ShiviIntroLocationState | null;
-    if (s?.showCallbackScheduled) {
-      navigate(
-        { pathname: location.pathname, search: location.search },
-        { replace: true, state: {} },
-      );
-    }
-  }, [location.pathname, location.search, location.state, navigate]);
-
   const t = (delayS: number) => ({
     duration: reduceMotion ? 0 : REVEAL_S,
     delay: reduceMotion ? 0 : delayS,
@@ -117,7 +91,24 @@ export function ShiviIntroPage() {
     navigate("/cars");
   };
 
-  const shiviFlowSearch = location.search;
+  const goBook = () => {
+    if (contextCarId) {
+      navigate(`/cars/${contextCarId}`);
+      return;
+    }
+    navigate("/cars");
+  };
+
+  const goCallback = () => {
+    navigate({
+      pathname: "/shivi/schedule-callback",
+      search: searchParams.toString() ? `?${searchParams.toString()}` : "",
+    });
+  };
+
+  const shortModelName = contextCar
+    ? contextCar.name.replace(/^(kia|toyota|tata|mahindra|hyundai)\s+/i, "")
+    : "car";
 
   return (
     <MobileShell className="mobile-shell--shivi-intro">
@@ -133,7 +124,7 @@ export function ShiviIntroPage() {
               type="button"
               className="shivi-intro__back"
               onClick={goBack}
-              aria-label="Back to showroom"
+              aria-label="Back"
             >
               <BackIcon />
             </button>
@@ -161,11 +152,9 @@ export function ShiviIntroPage() {
             <div className="shivi-intro__greeting">
               <p className="shivi-intro__hi">Hi Sharath</p>
               <p className="shivi-intro__tagline">{DEFAULT_TAGLINE}</p>
-              {contextCar ? (
-                <p className="shivi-intro__context-sub">
-                  I can help you get a better deal on this car.
-                </p>
-              ) : null}
+              <p className="shivi-intro__context-sub">
+                {`I've unlocked your price on the ${shortModelName}.`}
+              </p>
             </div>
           </div>
         </motion.div>
@@ -173,7 +162,7 @@ export function ShiviIntroPage() {
         {contextCar && contextColour ? (
           <motion.section
             className="shivi-intro__price-card"
-            aria-label={`${contextCar.name} price summary`}
+            aria-label={`${contextCar.name} exclusive price summary`}
             initial={fromBottom}
             animate={toVisible}
             transition={t(DELAY_CONTEXT_S)}
@@ -202,69 +191,63 @@ export function ShiviIntroPage() {
               </div>
             </div>
             <div className="shivi-intro__price-card-box">
-              <div className="shivi-intro__price-card-row shivi-intro__price-card-row--dealer">
+              <div className="shivi-intro__price-card-row">
                 <span className="shivi-intro__price-card-row-label">Dealer price</span>
                 <span className="shivi-intro__price-card-row-value">
                   {contextCar.mmv.dealerPriceDisplay}
                 </span>
               </div>
-              <div className="shivi-intro__price-card-row shivi-intro__price-card-row--discount">
-                <span className="shivi-intro__price-card-row-label">ACKO Drive discount</span>
-                <span className="shivi-intro__price-card-row-value">
+              <div className="shivi-intro__price-card-row">
+                <span className="shivi-intro__price-card-row-label">
+                  ACKO Drive discount
+                </span>
+                <span className="shivi-intro__price-card-row-value shivi-intro__price-card-row-value--discount">
                   {toDiscountLabel(contextCar.mmv.saveAmountDisplay)}
                 </span>
               </div>
               <div className="shivi-intro__price-card-divider" aria-hidden />
-              <div className="shivi-intro__price-card-row shivi-intro__price-card-row--subtotal">
+              <div className="shivi-intro__price-card-row">
                 <span className="shivi-intro__price-card-row-label">ACKO Drive price</span>
                 <span className="shivi-intro__price-card-row-value shivi-intro__price-card-row-value--subtotal">
                   {contextCar.mmv.ackoPriceDisplay}
                 </span>
               </div>
-              <div className="shivi-intro__price-card-divider" aria-hidden />
-              <div className="shivi-intro__price-card-row shivi-intro__price-card-row--shivi">
+              <div className="shivi-intro__price-card-row">
                 <span className="shivi-intro__price-card-row-label shivi-intro__price-card-row-label--total">
                   Shivi discount
                 </span>
                 <span className="shivi-intro__price-card-row-value shivi-intro__price-card-row-value--shivi">
-                  XX,XXX
+                  -20,000
                 </span>
               </div>
-              <p className="shivi-intro__price-card-footnote">
-                <PhoneIcon />
-                <span>Talk to Shivi to unlock this discount</span>
-              </p>
+              <div className="shivi-intro__price-card-divider" aria-hidden />
+              <div className="shivi-intro__price-card-row">
+                <span className="shivi-intro__price-card-row-label shivi-intro__price-card-row-label--total">
+                  Exclusive price
+                </span>
+                <span className="shivi-intro__price-card-row-value shivi-unlocked__price-card-row-value--exclusive">
+                  {contextCar.mmv.ackoPriceDisplay}
+                </span>
+              </div>
             </div>
           </motion.section>
         ) : null}
 
         <motion.div
-          className={
-            "shivi-intro__help-block" +
-            (contextCar && contextColour ? " shivi-intro__help-block--context" : "")
-          }
+          className="shivi-intro__help-block shivi-intro__help-block--context"
           initial={fromBottom}
           animate={toVisible}
-          transition={t(contextCar ? DELAY_HELP_S + 0.06 : DELAY_HELP_S)}
+          transition={t(DELAY_HELP_S)}
         >
-          <p className="shivi-intro__section-label">
-            {contextCar && contextColour
-              ? "A few more things I can help with"
-              : "Here’s how I can help you"}
-          </p>
-          <div
-            className={
-              "shivi-intro__grid" +
-              (contextCar && contextColour ? " shivi-intro__grid--context" : "")
-            }
-          >
-            {(contextCar && contextColour ? TILES_CAR_CONTEXT : TILES_DEFAULT).map((tile) => (
+          <p className="shivi-intro__section-label">A few more things I can help with</p>
+          <div className="shivi-intro__grid shivi-intro__grid--context">
+            {TILES_CAR_CONTEXT.map((tile) => (
               <div key={tile.title} className="shivi-intro__tile">
                 <AssetIcon
                   src={tile.iconSrc}
                   alt=""
-                  width={contextCar && contextColour ? 20 : 24}
-                  height={contextCar && contextColour ? 20 : 24}
+                  width={20}
+                  height={20}
                   className="shivi-intro__tile-icon shivi-intro__tile-icon--asset"
                 />
                 <p className="shivi-intro__tile-text">{tile.title}</p>
@@ -273,51 +256,33 @@ export function ShiviIntroPage() {
           </div>
         </motion.div>
 
-        {showCallbackNotice ? (
-          <motion.footer
-            className="shivi-intro__footer shivi-intro__footer--callback-scheduled"
-            initial={fromBottom}
-            animate={toVisible}
-            transition={t(DELAY_CTA_S)}
-          >
-            <div className="shivi-intro__callback-notice" role="status">
-              <p>Callback scheduled</p>
-            </div>
-          </motion.footer>
-        ) : (
-          <motion.footer
-            className="shivi-intro__footer"
-            initial={fromBottom}
-            animate={toVisible}
-            transition={t(DELAY_CTA_S)}
-          >
-            {contextCar && contextColour ? null : (
-              <div className="shivi-intro__trust-banner" role="note">
-                <p>No spam. Just a quick call to help you decide.</p>
-              </div>
-            )}
-            <div className="shivi-intro__cta-panel">
-              <button
-                type="button"
-                className="shivi-intro__cta shivi-intro__cta--primary"
-                onClick={() =>
-                  navigate({ pathname: "/shivi/confirmation", search: shiviFlowSearch })
-                }
-              >
-                Get a call right now
-              </button>
-              <button
-                type="button"
-                className="shivi-intro__cta-link"
-                onClick={() =>
-                  navigate({ pathname: "/shivi/schedule-callback", search: shiviFlowSearch })
-                }
-              >
-                Schedule a callback
-              </button>
-            </div>
-          </motion.footer>
-        )}
+        <motion.footer
+          className="shivi-intro__footer"
+          initial={fromBottom}
+          animate={toVisible}
+          transition={t(DELAY_CTA_S)}
+        >
+          <div className="shivi-unlocked__expiry" role="note">
+            <ClockIcon />
+            <p>Your exclusive price expires in 24 hours</p>
+          </div>
+          <div className="shivi-intro__cta-panel">
+            <button
+              type="button"
+              className="shivi-intro__cta shivi-intro__cta--primary"
+              onClick={goBook}
+            >
+              Book now
+            </button>
+            <button
+              type="button"
+              className="shivi-unlocked__callback-link"
+              onClick={goCallback}
+            >
+              Get a callback
+            </button>
+          </div>
+        </motion.footer>
       </div>
     </MobileShell>
   );
@@ -337,20 +302,28 @@ function BackIcon() {
   );
 }
 
-function PhoneIcon() {
+function ClockIcon() {
   return (
     <svg
-      className="shivi-intro__price-card-footnote-icon"
+      className="shivi-unlocked__expiry-icon"
       width="16"
       height="16"
-      viewBox="0 0 20 20"
+      viewBox="0 0 16 16"
       fill="none"
       aria-hidden
     >
-      <path
-        d="M17.5 14.4v2.1a1.4 1.4 0 0 1-1.53 1.4 13.86 13.86 0 0 1-6.04-2.15 13.65 13.65 0 0 1-4.2-4.2A13.86 13.86 0 0 1 3.58 5.5 1.4 1.4 0 0 1 4.97 4h2.1a1.4 1.4 0 0 1 1.4 1.2c.09.65.24 1.28.47 1.88a1.4 1.4 0 0 1-.32 1.47L7.72 9.46a11.2 11.2 0 0 0 4.2 4.2l.92-.91a1.4 1.4 0 0 1 1.47-.32c.6.22 1.24.38 1.89.47a1.4 1.4 0 0 1 1.2 1.42Z"
+      <circle
+        cx="8"
+        cy="8"
+        r="6"
         stroke="currentColor"
-        strokeWidth="1.4"
+        strokeWidth="1.5"
+        fill="none"
+      />
+      <path
+        d="M8 4.5V8l2.2 1.4"
+        stroke="currentColor"
+        strokeWidth="1.5"
         strokeLinecap="round"
         strokeLinejoin="round"
       />

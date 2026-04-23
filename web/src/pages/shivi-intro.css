@@ -251,8 +251,7 @@
   font-variant-numeric: tabular-nums;
 }
 
-.shivi-intro__price-card-row-value--discount {
-  color: #0fa457;
+.shivi-intro__price-card-row-value--subtotal {
   font-weight: 500;
 }
 
@@ -260,6 +259,13 @@
   font-size: 14px;
   line-height: 20px;
   font-weight: 500;
+}
+
+.shivi-intro__price-card-row-value--shivi {
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 500;
+  color: #0fa457;
 }
 
 .shivi-intro__price-card-divider {
@@ -271,13 +277,12 @@
 .shivi-intro__price-card-footnote {
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 8px;
-  margin: 12px 12px 0;
+  gap: 4px;
+  margin: 0;
   font-size: 12px;
   font-weight: 400;
   line-height: 18px;
-  color: #121212;
+  color: #4b4b4b;
 }
 
 .shivi-intro__price-card-footnote-icon {

@@ -1,4 +1,5 @@
 import type { CarListItem, ShortlistCar } from "../types/car";
+import { publicUrl } from "../lib/publicUrl";
 
 const mmvBase = (
   partial: Omit<CarListItem["mmv"], "shiviHeadline" | "shiviSubline" | "shiviCtaLabel"> & {
@@ -18,7 +19,7 @@ export const shortlistCars: ShortlistCar[] = [
   {
     id: "toyota-hyryder",
     name: "Toyota Hyryder",
-    imageUrl: "/assets/mmv-car.png",
+    imageUrl: publicUrl("/assets/mmv-car.png"),
   },
   {
     id: "kia-seltos",
@@ -29,7 +30,7 @@ export const shortlistCars: ShortlistCar[] = [
   {
     id: "tata-harrier",
     name: "Tata Harrier",
-    imageUrl: "/assets/tata-harrier.png",
+    imageUrl: publicUrl("/assets/tata-harrier.png"),
   },
 ];
 
@@ -37,7 +38,7 @@ export const showroomCars: CarListItem[] = [
   {
     id: "toyota-hyryder",
     name: "Kia Seltos",
-    imageUrl: "/assets/mmv-car.png",
+    imageUrl: publicUrl("/assets/mmv-car.png"),
     imageWidth: 640,
     imageHeight: 360,
     expertRatingLabel: "8.5/10 expert rating",
@@ -60,8 +61,8 @@ export const showroomCars: CarListItem[] = [
       defaultColourId: "red",
       cityPriceLabel: "ACKO Drive price in Bangalore",
       ackoPriceLabel: "On-road in your city",
-      ackoPriceDisplay: "₹14.8 lakh",
-      dealerPriceDisplay: "₹15.4 lakh",
+      ackoPriceDisplay: "₹14,80,000",
+      dealerPriceDisplay: "₹15,40,000",
       saveAmountDisplay: "Save ₹60,000",
       expressDeliveryLabel: "10 Mar '25",
       primaryCtaLabel: "Book this car",
@@ -70,7 +71,7 @@ export const showroomCars: CarListItem[] = [
   {
     id: "tata-harrier",
     name: "Tata Harrier",
-    imageUrl: "/assets/tata-harrier.png",
+    imageUrl: publicUrl("/assets/tata-harrier.png"),
     imageWidth: 640,
     imageHeight: 360,
     expertRatingLabel: "8/10 expert rating",
@@ -94,8 +95,8 @@ export const showroomCars: CarListItem[] = [
       defaultColourId: "red",
       cityPriceLabel: "ACKO Drive price in Bangalore",
       ackoPriceLabel: "On-road in your city",
-      ackoPriceDisplay: "₹21.2 lakh",
-      dealerPriceDisplay: "₹21.9 lakh",
+      ackoPriceDisplay: "₹21,20,000",
+      dealerPriceDisplay: "₹21,90,000",
       saveAmountDisplay: "Save ₹70,000",
       expressDeliveryLabel: "14 Feb '25",
       primaryCtaLabel: "Book this car",
@@ -104,7 +105,7 @@ export const showroomCars: CarListItem[] = [
   {
     id: "mahindra-be6",
     name: "Mahindra BE 6",
-    imageUrl: "/assets/mahindra-be6.png",
+    imageUrl: publicUrl("/assets/mahindra-be6.png"),
     imageWidth: 640,
     imageHeight: 360,
     expertRatingLabel: "8/10 expert rating",
@@ -128,8 +129,8 @@ export const showroomCars: CarListItem[] = [
       defaultColourId: "red",
       cityPriceLabel: "ACKO Drive price in Bangalore",
       ackoPriceLabel: "On-road in your city",
-      ackoPriceDisplay: "₹18.9 lakh",
-      dealerPriceDisplay: "₹19.4 lakh",
+      ackoPriceDisplay: "₹18,90,000",
+      dealerPriceDisplay: "₹19,40,000",
       saveAmountDisplay: "Save ₹50,000",
       expressDeliveryLabel: "28 Feb '25",
       primaryCtaLabel: "Book this car",
@@ -138,7 +139,7 @@ export const showroomCars: CarListItem[] = [
   {
     id: "kia-carens",
     name: "Kia Carens",
-    imageUrl: "/assets/kia-carens.png",
+    imageUrl: publicUrl("/assets/kia-carens.png"),
     imageWidth: 640,
     imageHeight: 360,
     expertRatingLabel: "9.5/10 expert rating",
@@ -161,8 +162,8 @@ export const showroomCars: CarListItem[] = [
       defaultColourId: "red",
       cityPriceLabel: "ACKO Drive price in Bangalore",
       ackoPriceLabel: "On-road in your city",
-      ackoPriceDisplay: "₹17.4 lakh",
-      dealerPriceDisplay: "₹17.9 lakh",
+      ackoPriceDisplay: "₹17,40,000",
+      dealerPriceDisplay: "₹17,90,000",
       saveAmountDisplay: "Save ₹48,500",
       expressDeliveryLabel: "14 Feb '25",
       primaryCtaLabel: "Book this car",
@@ -196,8 +197,8 @@ export const showroomCars: CarListItem[] = [
       defaultColourId: "red",
       cityPriceLabel: "ACKO Drive price in Bangalore",
       ackoPriceLabel: "On-road in your city",
-      ackoPriceDisplay: "₹16.8 lakh",
-      dealerPriceDisplay: "₹17.3 lakh",
+      ackoPriceDisplay: "₹16,80,000",
+      dealerPriceDisplay: "₹17,30,000",
       saveAmountDisplay: "Save ₹52,000",
       expressDeliveryLabel: "21 Feb '25",
       primaryCtaLabel: "Book this car",
@@ -232,8 +233,8 @@ export const showroomCars: CarListItem[] = [
       defaultColourId: "red",
       cityPriceLabel: "ACKO Drive price in Bangalore",
       ackoPriceLabel: "On-road in your city",
-      ackoPriceDisplay: "₹13.5 lakh",
-      dealerPriceDisplay: "₹13.9 lakh",
+      ackoPriceDisplay: "₹13,50,000",
+      dealerPriceDisplay: "₹13,90,000",
       saveAmountDisplay: "Save ₹27,077",
       expressDeliveryLabel: "14 Feb '25",
       primaryCtaLabel: "Book this car",

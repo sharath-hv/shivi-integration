@@ -1,8 +1,9 @@
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import { motion, useReducedMotion } from "framer-motion";
 import { AssetIcon } from "../components/AssetIcon";
 import { MobileShell } from "../components/MobileShell";
 import { ASSETS } from "../lib/assets";
+import { SHIVI_INTRO_CAR_QUERY } from "../lib/shiviIntroContext";
 import { navigateToShiviLandingWithCallbackScheduled } from "../lib/shiviLandingNavigation";
 import "./shivi-confirmation.css";
 
@@ -31,13 +32,25 @@ function BackIcon() {
 export function ShiviCallConfirmationPage() {
   const navigate = useNavigate();
   const location = useLocation();
+  const [searchParams] = useSearchParams();
   const reduceMotion = useReducedMotion();
+
+  /** MMV flow sets ?car=<id> on the Shivi route; only then we unlock a price. */
+  const isMmvFlow = Boolean(searchParams.get(SHIVI_INTRO_CAR_QUERY));
 
   const goToShiviWithScheduledNotice = () =>
     navigateToShiviLandingWithCallbackScheduled(navigate, {
       replace: true,
       search: location.search,
     });
+
+  const handlePrimaryCta = () => {
+    if (isMmvFlow) {
+      navigate({ pathname: "/shivi/unlocked", search: location.search });
+      return;
+    }
+    goToShiviWithScheduledNotice();
+  };
 
   const t = (delayS: number) => ({
     duration: reduceMotion ? 0 : REVEAL_S,
@@ -93,7 +106,7 @@ export function ShiviCallConfirmationPage() {
             <button
               type="button"
               className="shivi-confirm__cta"
-              onClick={goToShiviWithScheduledNotice}
+              onClick={handlePrimaryCta}
             >
               Got it
             </button>
