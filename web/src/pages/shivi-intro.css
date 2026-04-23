@@ -77,7 +77,8 @@
   gap: 20px;
   padding: 8px 20px 0;
   width: 100%;
-  max-width: 360px;
+  max-width: var(--mobile-max);
+  box-sizing: border-box;
 }
 
 .shivi-intro__avatar {
@@ -139,7 +140,8 @@
 
 .shivi-intro__context-sub {
   margin: 0;
-  max-width: 320px;
+  max-width: var(--content-inner-max);
+  width: 100%;
   font-size: 14px;
   font-weight: 400;
   line-height: 20px;
@@ -148,8 +150,8 @@
 
 /* Shivi_car context — Figma node 253:11434 */
 .shivi-intro__price-card {
-  width: 320px;
-  max-width: calc(100% - 40px);
+  width: 100%;
+  max-width: min(var(--content-inner-max), calc(100% - 40px));
   margin: 20px auto 0;
   padding: 11px;
   box-sizing: border-box;
@@ -292,8 +294,8 @@
 
 .shivi-intro__help-block--context .shivi-intro__section-label {
   margin: 32px auto 12px;
-  width: 320px;
-  max-width: calc(100% - 40px);
+  width: 100%;
+  max-width: min(var(--content-inner-max), calc(100% - 40px));
   font-size: 12px;
   font-weight: 500;
   line-height: 18px;
@@ -302,7 +304,8 @@
 
 .shivi-intro__section-label {
   margin: 32px 20px 12px;
-  max-width: 320px;
+  max-width: var(--content-inner-max);
+  box-sizing: border-box;
   font-size: 14px;
   font-weight: 500;
   line-height: 20px;
@@ -315,14 +318,14 @@
   gap: 12px;
   padding: 0 20px;
   width: 100%;
-  max-width: 360px;
+  max-width: var(--mobile-max);
   box-sizing: border-box;
 }
 
 .shivi-intro__grid--context {
   grid-template-columns: 1fr 1fr 1fr;
-  width: 320px;
-  max-width: calc(100% - 40px);
+  width: 100%;
+  max-width: min(var(--content-inner-max), calc(100% - 40px));
   margin: 0 auto;
   padding: 0;
 }
@@ -433,7 +436,7 @@
 
 .shivi-intro__cta--primary {
   width: 100%;
-  max-width: 320px;
+  max-width: var(--content-inner-max);
   min-height: 48px;
   padding: 10px 16px;
   border: none;

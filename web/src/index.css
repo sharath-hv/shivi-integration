@@ -24,7 +24,11 @@
   --radius-full: 999px;
   --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.35);
   --space-page: 20px;
-  --mobile-max: 360px;
+  /* App shell: scales to viewport, caps at 390px wide. */
+  --mobile-max: 390px;
+  --layout-gutter: 20px;
+  /* Main content column inside 20px side padding (390 − 40 = 350). */
+  --content-inner-max: calc(var(--mobile-max) - 2 * var(--layout-gutter));
   /* Euclid only — @font-face in fonts.css; no system UI font stack. */
   --font-sans: "Euclid Circular B";
 }
