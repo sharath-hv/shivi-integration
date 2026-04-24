@@ -17,6 +17,8 @@ export const ASSETS = {
   shiviTileAnswerQuestions: publicUrl("/assets/shivi-tile-answer-questions.svg"),
   /** Shivi call success — Figma 253-11086 */
   success: publicUrl("/assets/Success.svg"),
+  /** Locked / masked price — repo /assets/Lock.svg */
+  lock: publicUrl("/assets/Lock.svg"),
   /** MMV hero car — Figma 253-12803 */
   mmvCar: publicUrl("/assets/mmv-car.png"),
 } as const;

@@ -283,6 +283,19 @@
   color: rgba(15, 164, 87, 1);
 }
 
+.shivi-intro__price-card-locked-value {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.shivi-intro__price-card-lock-icon {
+  display: block;
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+}
+
 /* `/shivi` intro route only — price card typography */
 .shivi-intro-page .shivi-intro__price-card-row--dealer .shivi-intro__price-card-row-label {
   color: rgba(18, 18, 18, 1);
@@ -294,6 +307,10 @@
 
 .shivi-intro-page .shivi-intro__price-card-row--discount .shivi-intro__price-card-row-label {
   color: rgba(18, 18, 18, 1);
+}
+
+.shivi-intro-page .shivi-intro__price-card-row--discount .shivi-intro__price-card-row-value {
+  color: rgba(15, 164, 87, 1);
 }
 
 .shivi-intro-page .shivi-intro__price-card-row--subtotal .shivi-intro__price-card-row-label {

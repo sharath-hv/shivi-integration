@@ -227,7 +227,17 @@ export function ShiviIntroPage() {
                   Shivi discount
                 </span>
                 <span className="shivi-intro__price-card-row-value shivi-intro__price-card-row-value--shivi">
-                  XX,XXX
+                  <span className="shivi-intro__price-card-locked-value">
+                    <AssetIcon
+                      src={ASSETS.lock}
+                      alt=""
+                      width={20}
+                      height={20}
+                      className="shivi-intro__price-card-lock-icon"
+                      aria-hidden
+                    />
+                    <span className="shivi-intro__price-card-locked-value-text">XX,XXX</span>
+                  </span>
                 </span>
               </div>
               <p className="shivi-intro__price-card-footnote">
