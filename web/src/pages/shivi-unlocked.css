@@ -5,10 +5,20 @@
   padding-bottom: 140px;
 }
 
-.shivi-unlocked__price-card-row-value--exclusive {
-  font-size: 14px;
+/* Exclusive price row: 16px / 24px (override shivi-intro base, which is more specific). */
+.shivi-intro__price-card-box
+  .shivi-intro__price-card-row-value.shivi-unlocked__price-card-row-value--exclusive {
+  font-size: 16px;
   font-weight: 500;
-  line-height: 20px;
+  line-height: 24px;
+}
+
+/* "Exclusive price" label only (same row as exclusive value; not "Shivi discount" --total row). */
+.shivi-intro__price-card-row:has(.shivi-unlocked__price-card-row-value--exclusive)
+  .shivi-intro__price-card-row-label--total {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
 }
 
 /* On the unlocked page, ACKO Drive discount is rendered in green (Figma 313:68531). */
@@ -22,7 +32,7 @@
   justify-content: center;
   gap: 6px;
   min-height: 32px;
-  padding: 8px 20px;
+  padding: 8px clamp(12px, 4vw, 20px);
   background: #fff7e5;
   color: #d16900;
 }
@@ -34,6 +44,7 @@
   line-height: 18px;
   text-align: center;
   color: #d16900;
+  overflow-wrap: anywhere;
 }
 
 .shivi-unlocked__expiry-icon {

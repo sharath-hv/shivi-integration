@@ -121,7 +121,7 @@ export function ShiviIntroPage() {
 
   return (
     <MobileShell className="mobile-shell--shivi-intro">
-      <div className="shivi-intro">
+      <div className="shivi-intro shivi-intro-page">
         <motion.div
           className="shivi-intro__intro-block"
           initial={fromBottom}
@@ -341,8 +341,8 @@ function PhoneIcon() {
   return (
     <svg
       className="shivi-intro__price-card-footnote-icon"
-      width="16"
-      height="16"
+      width="20"
+      height="20"
       viewBox="0 0 20 20"
       fill="none"
       aria-hidden

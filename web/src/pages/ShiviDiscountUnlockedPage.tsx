@@ -6,6 +6,10 @@ import { MobileShell } from "../components/MobileShell";
 import { getCarById } from "../data/cars";
 import { ASSETS } from "../lib/assets";
 import {
+  formatExclusiveUnlockedPrice,
+  SHIVI_UNLOCK_EXCLUSIVE_DISCOUNT_INR,
+} from "../lib/mmvPriceFormat";
+import {
   SHIVI_INTRO_CAR_QUERY,
   SHIVI_INTRO_COLOUR_QUERY,
 } from "../lib/shiviIntroContext";
@@ -212,21 +216,21 @@ export function ShiviDiscountUnlockedPage() {
                   {contextCar.mmv.ackoPriceDisplay}
                 </span>
               </div>
+              <div className="shivi-intro__price-card-divider" aria-hidden />
               <div className="shivi-intro__price-card-row">
                 <span className="shivi-intro__price-card-row-label shivi-intro__price-card-row-label--total">
                   Shivi discount
                 </span>
                 <span className="shivi-intro__price-card-row-value shivi-intro__price-card-row-value--shivi">
-                  -20,000
+                  {`-${SHIVI_UNLOCK_EXCLUSIVE_DISCOUNT_INR.toLocaleString("en-IN")}`}
                 </span>
               </div>
-              <div className="shivi-intro__price-card-divider" aria-hidden />
               <div className="shivi-intro__price-card-row">
                 <span className="shivi-intro__price-card-row-label shivi-intro__price-card-row-label--total">
                   Exclusive price
                 </span>
                 <span className="shivi-intro__price-card-row-value shivi-unlocked__price-card-row-value--exclusive">
-                  {contextCar.mmv.ackoPriceDisplay}
+                  {formatExclusiveUnlockedPrice(contextCar.mmv.ackoPriceDisplay)}
                 </span>
               </div>
             </div>
@@ -272,7 +276,7 @@ export function ShiviDiscountUnlockedPage() {
               className="shivi-intro__cta shivi-intro__cta--primary"
               onClick={goBook}
             >
-              Book now
+              Lock this price
             </button>
             <button
               type="button"

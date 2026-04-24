@@ -2,17 +2,19 @@
 
 .car-listing-page {
   min-height: 100vh;
+  min-height: 100dvh;
   color: #121212;
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: clip;
 }
 
 .listing-topbar {
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  padding: 16px 14px 16px 14px;
+  padding: max(16px, env(safe-area-inset-top, 0px)) 14px 16px 14px;
   min-height: 56px;
   background: #ffffff;
 }

@@ -10,10 +10,13 @@
   width: 100%;
   max-width: var(--mobile-max);
   min-height: 100vh;
+  min-height: 100dvh;
   min-width: 0;
   position: relative;
   background: var(--color-bg);
   box-shadow: 0 0 0 1px var(--color-border);
+  padding-left: env(safe-area-inset-left, 0px);
+  padding-right: env(safe-area-inset-right, 0px);
 }
 
 .mobile-shell--drive-listing {

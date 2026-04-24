@@ -17,10 +17,11 @@
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: clip;
 }
 
 .mmv__header {
-  padding: 56px 20px 0;
+  padding: calc(56px + env(safe-area-inset-top, 0px)) 20px 0;
   text-align: center;
 }
 

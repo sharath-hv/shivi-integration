@@ -171,5 +171,5 @@
 }
 
 body.has-flow-switcher .listing-topbar {
-  padding-left: 62px;
+  padding-left: max(62px, calc(14px + env(safe-area-inset-left, 0px)));
 }

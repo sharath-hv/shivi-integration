@@ -11,6 +11,7 @@
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: clip;
 }
 
 .shivi-schedule__top {
@@ -18,7 +19,7 @@
   align-items: center;
   justify-content: flex-start;
   min-height: 56px;
-  padding: 16px 20px 16px 14px;
+  padding: max(16px, env(safe-area-inset-top, 0px)) 20px 16px 14px;
   flex-shrink: 0;
 }
 

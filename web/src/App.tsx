@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { matchPath, Navigate, Route, Routes, useLocation } from "react-router-dom";
 import { FlowSwitcher } from "./components/FlowSwitcher";
 import { CarListingPage } from "./pages/CarListingPage";
@@ -10,6 +11,11 @@ import { ShiviScheduleCallbackPage } from "./pages/ShiviScheduleCallbackPage";
 
 export default function App() {
   const location = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname, location.search]);
+
   const showFlowSwitcher =
     matchPath({ path: "/cars", end: true }, location.pathname) != null ||
     matchPath({ path: "/cars/:carId", end: true }, location.pathname) != null;

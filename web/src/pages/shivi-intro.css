@@ -4,6 +4,9 @@
 .shivi-intro {
   min-height: 100vh;
   min-height: 100dvh;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
   display: flex;
   flex-direction: column;
   padding: 0 0 108px; /* CTA panel height to prevent overlap */
@@ -12,6 +15,7 @@
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: clip;
 }
 
 .shivi-intro__top {
@@ -19,7 +23,7 @@
   align-items: center;
   justify-content: flex-start;
   min-height: 56px;
-  padding: 16px 20px 16px 14px;
+  padding: max(16px, env(safe-area-inset-top, 0px)) 20px 16px 14px;
 }
 
 .shivi-intro__back {
@@ -136,6 +140,7 @@
   line-height: 30px;
   letter-spacing: -0.1px;
   color: #121212;
+  overflow-wrap: anywhere;
 }
 
 .shivi-intro__context-sub {
@@ -151,8 +156,8 @@
 /* Shivi_car context — Figma node 253:11434 */
 .shivi-intro__price-card {
   width: 100%;
-  max-width: min(var(--content-inner-max), calc(100% - 40px));
-  margin: 20px auto 0;
+  max-width: min(var(--content-inner-max), calc(100% - 2 * clamp(12px, 4vw, 20px)));
+  margin: 24px auto 0;
   padding: 11px;
   box-sizing: border-box;
   border-radius: 16px;
@@ -202,9 +207,9 @@
 
 .shivi-intro__price-card-variant {
   margin: 0;
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 400;
-  line-height: 14px;
+  line-height: 18px;
   color: #4b4b4b;
 }
 
@@ -228,46 +233,75 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 24px;
+  gap: clamp(8px, 3vw, 24px);
+}
+
+.shivi-intro__price-card-row--shivi {
+  line-height: 28px;
 }
 
 .shivi-intro__price-card-row-label {
-  font-size: 12px;
+  flex: 1 1 auto;
+  min-width: 0;
+  font-size: 14px;
   font-weight: 400;
-  line-height: 18px;
-  color: #757575;
+  line-height: 20px;
+  color: rgba(18, 18, 18, 1);
 }
 
 .shivi-intro__price-card-row-label--total {
   font-size: 14px;
+  font-weight: 400;
   line-height: 20px;
   color: #121212;
 }
 
-.shivi-intro__price-card-row-value {
-  font-size: 12px;
-  font-weight: 400;
-  line-height: 18px;
+.shivi-intro__price-card-box .shivi-intro__price-card-row-value {
+  flex-shrink: 0;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
   color: #121212;
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-.shivi-intro__price-card-row-value--subtotal {
+.shivi-intro__price-card-box .shivi-intro__price-card-row-value--subtotal {
   font-weight: 500;
 }
 
-.shivi-intro__price-card-row-value--total {
+.shivi-intro__price-card-box .shivi-intro__price-card-row-value--total {
   font-size: 14px;
   line-height: 20px;
   font-weight: 500;
 }
 
-.shivi-intro__price-card-row-value--shivi {
+.shivi-intro__price-card-box .shivi-intro__price-card-row-value--shivi {
   font-size: 14px;
   line-height: 20px;
   font-weight: 500;
-  color: #0fa457;
+  color: rgba(15, 164, 87, 1);
+}
+
+/* `/shivi` intro route only — price card typography */
+.shivi-intro-page .shivi-intro__price-card-row--dealer .shivi-intro__price-card-row-label {
+  color: rgba(18, 18, 18, 1);
+}
+
+.shivi-intro-page .shivi-intro__price-card-row--dealer .shivi-intro__price-card-row-value {
+  font-weight: 500;
+}
+
+.shivi-intro-page .shivi-intro__price-card-row--discount .shivi-intro__price-card-row-label {
+  color: rgba(18, 18, 18, 1);
+}
+
+.shivi-intro-page .shivi-intro__price-card-row--subtotal .shivi-intro__price-card-row-label {
+  color: #121212;
+}
+
+.shivi-intro-page .shivi-intro__price-card-box .shivi-intro__price-card-row-value--subtotal {
+  color: #121212;
 }
 
 .shivi-intro__price-card-divider {
@@ -281,7 +315,7 @@
   align-items: center;
   gap: 4px;
   margin: 0;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 400;
   line-height: 18px;
   color: #4b4b4b;
@@ -295,10 +329,10 @@
 .shivi-intro__help-block--context .shivi-intro__section-label {
   margin: 32px auto 12px;
   width: 100%;
-  max-width: min(var(--content-inner-max), calc(100% - 40px));
-  font-size: 12px;
-  font-weight: 500;
-  line-height: 18px;
+  max-width: min(var(--content-inner-max), calc(100% - 2 * clamp(12px, 4vw, 20px)));
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
   color: rgba(117, 117, 117, 1);
 }
 
@@ -398,6 +432,20 @@
   right: 0;
   width: 100%;
   z-index: 100;
+  padding-left: env(safe-area-inset-left, 0px);
+  padding-right: env(safe-area-inset-right, 0px);
+  box-sizing: border-box;
+}
+
+.shivi-intro__footer .shivi-intro__trust-banner,
+.shivi-intro__footer .shivi-intro__callback-notice,
+.shivi-intro__footer .shivi-unlocked__expiry,
+.shivi-intro__footer .shivi-intro__cta-panel {
+  max-width: var(--mobile-max);
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  box-sizing: border-box;
 }
 
 .shivi-intro__trust-banner {
@@ -495,4 +543,65 @@
   outline: 2px solid #1b73e8;
   outline-offset: 2px;
   border-radius: 4px;
+}
+
+/* Narrow phones: tighter gutters, readable grids, no horizontal scroll */
+@media (max-width: 380px) {
+  .shivi-intro__grid--context {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .shivi-intro__grid--context .shivi-intro__tile {
+    padding: 10px;
+  }
+}
+
+@media (max-width: 360px) {
+  .shivi-intro__hero {
+    padding-left: clamp(12px, 4vw, 20px);
+    padding-right: clamp(12px, 4vw, 20px);
+  }
+
+  .shivi-intro__section-label {
+    margin-left: clamp(12px, 4vw, 20px);
+    margin-right: clamp(12px, 4vw, 20px);
+  }
+
+  .shivi-intro__grid {
+    padding-left: clamp(12px, 4vw, 20px);
+    padding-right: clamp(12px, 4vw, 20px);
+    gap: 10px;
+  }
+
+  .shivi-intro__top {
+    padding-left: clamp(12px, 4vw, 20px);
+    padding-right: clamp(12px, 4vw, 20px);
+  }
+
+  .shivi-intro__tagline {
+    font-size: clamp(1.125rem, 5.2vw, 1.5rem);
+    line-height: 1.25;
+  }
+
+  .shivi-intro__callback-notice {
+    padding-left: clamp(12px, 4vw, 20px);
+    padding-right: clamp(12px, 4vw, 20px);
+  }
+
+  .shivi-intro__trust-banner {
+    padding-left: clamp(12px, 4vw, 20px);
+    padding-right: clamp(12px, 4vw, 20px);
+  }
+
+  .shivi-intro__cta-panel {
+    padding-left: clamp(12px, 4vw, 20px);
+    padding-right: clamp(12px, 4vw, 20px);
+  }
+}
+
+@media (max-width: 320px) {
+  .shivi-intro__grid--context {
+    grid-template-columns: minmax(0, 1fr);
+  }
 }
