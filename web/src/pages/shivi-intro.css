@@ -344,18 +344,19 @@
 }
 
 .shivi-intro__help-block--context .shivi-intro__section-label {
-  margin: 32px auto 12px;
+  margin: 32px auto 20px;
   width: 100%;
   max-width: min(var(--content-inner-max), calc(100% - 2 * clamp(12px, 4vw, 20px)));
   font-size: 14px;
-  font-weight: 400;
+  font-weight: 500;
   line-height: 20px;
   color: rgba(117, 117, 117, 1);
 }
 
 .shivi-intro__section-label {
-  margin: 32px 20px 12px;
-  max-width: var(--content-inner-max);
+  width: 100%;
+  max-width: min(var(--content-inner-max), calc(100% - 2 * clamp(12px, 4vw, 20px)));
+  margin: 32px auto 20px;
   box-sizing: border-box;
   font-size: 14px;
   font-weight: 500;
@@ -363,53 +364,163 @@
   color: #4b4b4b;
 }
 
+/* Figma 339:3802 — “Here’s how I can help you”: 2×2 panel (same max-width + gutters as price card) */
 .shivi-intro__grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 12px;
-  padding: 0 20px;
+  grid-template-rows: 1fr 1fr;
+  gap: 0;
   width: 100%;
-  max-width: var(--mobile-max);
+  max-width: min(var(--content-inner-max), calc(100% - 2 * clamp(12px, 4vw, 20px)));
+  min-height: clamp(200px, 62.5vw, 240px);
+  margin: 0 auto;
+  padding: 0;
   box-sizing: border-box;
+  background: #fff;
+  border: 1px solid #e8e8e8;
+  border-radius: 16px;
+  overflow: hidden;
+  position: relative;
+  isolation: isolate;
+  /* Single source of truth: adjust here and both 2×2 + context grids stay in sync */
+  --shivi-grid-sep-edge: rgba(255, 255, 255, 1);
+  --shivi-grid-sep-mid: rgba(232, 232, 232, 1);
+}
+
+/* Full-height / full-width center lines: edge → mid → edge (above tile bg, see below) */
+.shivi-intro__grid:not(.shivi-intro__grid--context)::before,
+.shivi-intro__grid:not(.shivi-intro__grid--context)::after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 1;
+}
+
+.shivi-intro__grid:not(.shivi-intro__grid--context)::before {
+  left: 50%;
+  top: 0;
+  width: 1px;
+  height: 100%;
+  transform: translateX(-50%);
+  background: linear-gradient(
+    180deg,
+    var(--shivi-grid-sep-edge) 0%,
+    var(--shivi-grid-sep-mid) 50%,
+    var(--shivi-grid-sep-edge) 100%
+  );
+}
+
+.shivi-intro__grid:not(.shivi-intro__grid--context)::after {
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  transform: translateY(-50%);
+  background: linear-gradient(
+    90deg,
+    var(--shivi-grid-sep-edge) 0%,
+    var(--shivi-grid-sep-mid) 50%,
+    var(--shivi-grid-sep-edge) 100%
+  );
+}
+
+/* Context (3 tiles): same gradient separators as 2×2 — two vertical lines at ⅓ and ⅔ */
+.shivi-intro__grid--context::before,
+.shivi-intro__grid--context::after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  pointer-events: none;
+  top: 0;
+  width: 1px;
+  height: 100%;
+  transform: translateX(-50%);
+  background: linear-gradient(
+    180deg,
+    var(--shivi-grid-sep-edge) 0%,
+    var(--shivi-grid-sep-mid) 50%,
+    var(--shivi-grid-sep-edge) 100%
+  );
+}
+
+.shivi-intro__grid--context::before {
+  left: calc(100% / 3);
+}
+
+.shivi-intro__grid--context::after {
+  left: calc(200% / 3);
 }
 
 .shivi-intro__grid--context {
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-rows: auto;
+  min-height: 0;
   width: 100%;
-  max-width: min(var(--content-inner-max), calc(100% - 40px));
+  max-width: min(var(--content-inner-max), calc(100% - 2 * clamp(12px, 4vw, 20px)));
   margin: 0 auto;
   padding: 0;
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
 }
 
 .shivi-intro__tile {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  gap: 16px;
-  padding: 16px 12px;
-  border-radius: 16px;
-  border: 1px solid #f1f1f1;
-  background: linear-gradient(180deg, #ffffff 0%, #f5f5f5 100%);
-  text-align: left;
+  align-items: center;
+  justify-content: flex-start;
+  gap: clamp(8px, 2.5vw, 12px);
+  padding: clamp(12px, 3.5vw, 20px) clamp(6px, 2.5vw, 12px) clamp(10px, 3vw, 16px);
   min-height: 0;
-  overflow: hidden;
+  min-width: 0;
+  text-align: center;
+  background: #fff;
+  box-sizing: border-box;
+  border: none;
+}
+
+.shivi-intro__grid:not(.shivi-intro__grid--context) .shivi-intro__tile {
+  position: relative;
+  z-index: 0;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: clamp(6px, 2.5vw, 12px);
+  padding-right: clamp(6px, 2.5vw, 12px);
 }
 
 .shivi-intro__grid--context .shivi-intro__tile {
-  gap: 8px;
-  padding: 12px;
-  min-width: 0;
+  position: relative;
+  z-index: 0;
+  padding: 20px 8px;
+  border-bottom: none;
+  border-right: none;
+  gap: 12px;
 }
 
-.shivi-intro__grid--context .shivi-intro__tile-text {
-  font-size: 12px;
-  font-weight: 500;
-  line-height: 18px;
+.shivi-intro__tile-icon-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: #f5f5f5;
 }
 
-.shivi-intro__grid--context .shivi-intro__tile-icon {
-  width: 20px;
-  height: 20px;
+.shivi-intro__grid--context .shivi-intro__tile-text,
+.shivi-intro__grid:not(.shivi-intro__grid--context) .shivi-intro__tile-text {
+  font-size: clamp(11px, 2.8vw, 12px);
+  font-weight: 400;
+  line-height: 1.5;
+  color: #121212;
+  max-width: min(120px, 100%);
+  margin: 0;
+}
+
+.shivi-intro__tile-text-line {
+  display: block;
 }
 
 .shivi-intro__intro-block,
@@ -421,9 +532,12 @@
   margin-bottom: 32px;
 }
 
+.shivi-intro__grid .shivi-intro__tile-icon {
+  width: 20px;
+  height: 20px;
+}
+
 .shivi-intro__tile-icon {
-  width: 24px;
-  height: 24px;
   flex-shrink: 0;
   color: #121212;
 }
@@ -434,11 +548,9 @@
   object-fit: contain;
 }
 
+/* Tile copy lives in `.shivi-intro__grid* .shivi-intro__tile-text` (Figma 339:3802) */
 .shivi-intro__tile-text {
   margin: 0;
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 20px;
   color: #121212;
 }
 
@@ -562,15 +674,37 @@
   border-radius: 4px;
 }
 
-/* Narrow phones: tighter gutters, readable grids, no horizontal scroll */
+/* Narrow phones: stack context tiles; horizontal gradient matches 2×2 (row boundaries) */
 @media (max-width: 380px) {
   .shivi-intro__grid--context {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 10px;
+    grid-template-columns: 1fr;
+  }
+
+  .shivi-intro__grid--context::before,
+  .shivi-intro__grid--context::after {
+    content: none;
   }
 
   .shivi-intro__grid--context .shivi-intro__tile {
-    padding: 10px;
+    position: relative;
+    padding: 20px 16px;
+  }
+
+  .shivi-intro__grid--context .shivi-intro__tile:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 1px;
+    z-index: 1;
+    pointer-events: none;
+    background: linear-gradient(
+      90deg,
+      var(--shivi-grid-sep-edge) 0%,
+      var(--shivi-grid-sep-mid) 50%,
+      var(--shivi-grid-sep-edge) 100%
+    );
   }
 }
 
@@ -583,12 +717,6 @@
   .shivi-intro__section-label {
     margin-left: clamp(12px, 4vw, 20px);
     margin-right: clamp(12px, 4vw, 20px);
-  }
-
-  .shivi-intro__grid {
-    padding-left: clamp(12px, 4vw, 20px);
-    padding-right: clamp(12px, 4vw, 20px);
-    gap: 10px;
   }
 
   .shivi-intro__top {
@@ -618,7 +746,7 @@
 }
 
 @media (max-width: 320px) {
-  .shivi-intro__grid--context {
-    grid-template-columns: minmax(0, 1fr);
+  .shivi-intro__grid:not(.shivi-intro__grid--context) {
+    min-height: 0;
   }
 }

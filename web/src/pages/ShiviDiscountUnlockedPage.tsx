@@ -17,10 +17,10 @@ import "./shivi-intro.css";
 import "./shivi-unlocked.css";
 
 /** Figma: Shivi AD integration — node 312:68392 (post-conversation, MMV flow). */
-const TILES_CAR_CONTEXT: { title: string; iconSrc: string }[] = [
-  { title: "Compare variants", iconSrc: ASSETS.shiviTileCompareCars },
-  { title: "Loan options", iconSrc: ASSETS.shiviTileCarFinance },
-  { title: "Clear your questions", iconSrc: ASSETS.shiviTileAnswerQuestions },
+const TILES_CAR_CONTEXT: { lines: string[]; iconSrc: string }[] = [
+  { lines: ["Compare variants", "easily"], iconSrc: ASSETS.shiviTileCompareCars },
+  { lines: ["Understand", "finance options"], iconSrc: ASSETS.shiviTileCarFinance },
+  { lines: ["Clear your", "questions"], iconSrc: ASSETS.shiviTileAnswerQuestions },
 ];
 
 const REVEAL_EASE: [number, number, number, number] = [0.25, 0.46, 0.45, 0.94];
@@ -246,15 +246,23 @@ export function ShiviDiscountUnlockedPage() {
           <p className="shivi-intro__section-label">A few more things I can help with</p>
           <div className="shivi-intro__grid shivi-intro__grid--context">
             {TILES_CAR_CONTEXT.map((tile) => (
-              <div key={tile.title} className="shivi-intro__tile">
-                <AssetIcon
-                  src={tile.iconSrc}
-                  alt=""
-                  width={20}
-                  height={20}
-                  className="shivi-intro__tile-icon shivi-intro__tile-icon--asset"
-                />
-                <p className="shivi-intro__tile-text">{tile.title}</p>
+              <div key={tile.lines.join(" ")} className="shivi-intro__tile">
+                <div className="shivi-intro__tile-icon-wrap">
+                  <AssetIcon
+                    src={tile.iconSrc}
+                    alt=""
+                    width={20}
+                    height={20}
+                    className="shivi-intro__tile-icon shivi-intro__tile-icon--asset"
+                  />
+                </div>
+                <p className="shivi-intro__tile-text">
+                  {tile.lines.map((line, i) => (
+                    <span key={i} className="shivi-intro__tile-text-line">
+                      {line}
+                    </span>
+                  ))}
+                </p>
               </div>
             ))}
           </div>

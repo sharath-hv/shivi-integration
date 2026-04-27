@@ -11,18 +11,19 @@ import {
 } from "../lib/shiviIntroContext";
 import "./shivi-intro.css";
 
-const TILES_DEFAULT: { title: string; iconSrc: string }[] = [
-  { title: "Get a dealer-beating price", iconSrc: ASSETS.shiviTileCarPrice },
-  { title: "Compare cars that you like", iconSrc: ASSETS.shiviTileCompareCars },
-  { title: "Sort out car finance", iconSrc: ASSETS.shiviTileCarFinance },
-  { title: "Answer any questions you have", iconSrc: ASSETS.shiviTileAnswerQuestions },
+/** Figma 339:3802 “Here’s how I can help you” quad grid. */
+const TILES_DEFAULT: { lines: string[]; iconSrc: string }[] = [
+  { lines: ["Unlock your", "exclusive price"], iconSrc: ASSETS.shiviTileCarPrice },
+  { lines: ["Compare cars", "easily"], iconSrc: ASSETS.shiviTileCompareCars },
+  { lines: ["Understand your finance options"], iconSrc: ASSETS.shiviTileCarFinance },
+  { lines: ["Get answers to", "your questions"], iconSrc: ASSETS.shiviTileAnswerQuestions },
 ];
 
-/** Shivi_car context — Figma node 253:11434 (context-aware help tiles). */
-const TILES_CAR_CONTEXT: { title: string; iconSrc: string }[] = [
-  { title: "Compare variants", iconSrc: ASSETS.shiviTileCompareCars },
-  { title: "Loan options", iconSrc: ASSETS.shiviTileCarFinance },
-  { title: "Clear your questions", iconSrc: ASSETS.shiviTileAnswerQuestions },
+/** Shivi_car context — Figma 253:11434 (context-aware help tiles). */
+const TILES_CAR_CONTEXT: { lines: string[]; iconSrc: string }[] = [
+  { lines: ["Compare variants", "easily"], iconSrc: ASSETS.shiviTileCompareCars },
+  { lines: ["Understand", "finance options"], iconSrc: ASSETS.shiviTileCarFinance },
+  { lines: ["Clear your", "questions"], iconSrc: ASSETS.shiviTileAnswerQuestions },
 ];
 
 /** Remove car name prefix from the variant title when it starts with it. */
@@ -269,15 +270,23 @@ export function ShiviIntroPage() {
             }
           >
             {(contextCar && contextColour ? TILES_CAR_CONTEXT : TILES_DEFAULT).map((tile) => (
-              <div key={tile.title} className="shivi-intro__tile">
-                <AssetIcon
-                  src={tile.iconSrc}
-                  alt=""
-                  width={contextCar && contextColour ? 20 : 24}
-                  height={contextCar && contextColour ? 20 : 24}
-                  className="shivi-intro__tile-icon shivi-intro__tile-icon--asset"
-                />
-                <p className="shivi-intro__tile-text">{tile.title}</p>
+              <div key={tile.lines.join(" ")} className="shivi-intro__tile">
+                <div className="shivi-intro__tile-icon-wrap">
+                  <AssetIcon
+                    src={tile.iconSrc}
+                    alt=""
+                    width={20}
+                    height={20}
+                    className="shivi-intro__tile-icon shivi-intro__tile-icon--asset"
+                  />
+                </div>
+                <p className="shivi-intro__tile-text">
+                  {tile.lines.map((line, i) => (
+                    <span key={i} className="shivi-intro__tile-text-line">
+                      {line}
+                    </span>
+                  ))}
+                </p>
               </div>
             ))}
           </div>
