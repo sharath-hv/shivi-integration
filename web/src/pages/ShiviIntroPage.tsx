@@ -53,6 +53,11 @@ const DELAY_CTA_S = 0.9;
 
 const DEFAULT_TAGLINE = "I’m Shivi, your car buying advisor";
 
+/** Hero copy when `?car=&colour=` resolves (MMV deep link only; not plain /shivi). */
+const TAGLINE_CAR_COLOUR_CONTEXT = "I’m Shivi, your car buying specialist";
+const CONTEXT_SUB_CAR_COLOUR =
+  "There’s a discount on this car only I can unlock.";
+
 export type ShiviIntroLocationState = {
   showCallbackScheduled?: boolean;
 };
@@ -89,6 +94,14 @@ export function ShiviIntroPage() {
       colours[0] ??
       undefined
     );
+  }, [contextCar, contextColourIdParam]);
+
+  /** True only when `colour` query matches this car (not car-only or default fallback). */
+  const hasCarColourDeepLink = useMemo(() => {
+    if (!contextCar || !contextColourIdParam) {
+      return false;
+    }
+    return contextCar.mmv.colours.some((c) => c.id === contextColourIdParam);
   }, [contextCar, contextColourIdParam]);
 
   useEffect(() => {
@@ -161,10 +174,16 @@ export function ShiviIntroPage() {
             </div>
             <div className="shivi-intro__greeting">
               <p className="shivi-intro__hi">Hi Sharath</p>
-              <p className="shivi-intro__tagline">{DEFAULT_TAGLINE}</p>
+              <p className="shivi-intro__tagline">
+                {hasCarColourDeepLink
+                  ? TAGLINE_CAR_COLOUR_CONTEXT
+                  : DEFAULT_TAGLINE}
+              </p>
               {contextCar ? (
                 <p className="shivi-intro__context-sub">
-                  I can help you get a better deal on this car.
+                  {hasCarColourDeepLink
+                    ? CONTEXT_SUB_CAR_COLOUR
+                    : "I can help you get a better deal on this car."}
                 </p>
               ) : null}
             </div>

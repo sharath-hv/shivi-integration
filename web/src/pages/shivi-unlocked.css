@@ -53,20 +53,36 @@
 }
 
 .shivi-unlocked__callback-link {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: center;
+  gap: 4px;
   padding: 0;
   border: none;
   background: none;
   font-family: inherit;
   font-size: 14px;
-  font-weight: 500;
+  font-weight: 400;
   line-height: 20px;
-  color: #1b73e8;
+  color: #121212;
   cursor: pointer;
-  white-space: nowrap;
+  text-align: center;
 }
 
-.shivi-unlocked__callback-link:hover {
-  text-decoration: underline;
+.shivi-unlocked__callback-prefix {
+  font-weight: 400;
+  color: #757575;
+}
+
+.shivi-unlocked__callback-action {
+  font-weight: 500;
+  color: #1b73e8;
+  text-decoration: none;
+}
+
+.shivi-unlocked__callback-link:hover .shivi-unlocked__callback-action {
+  color: #1557b0;
 }
 
 .shivi-unlocked__callback-link:focus-visible {

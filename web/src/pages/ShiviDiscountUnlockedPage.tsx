@@ -31,6 +31,8 @@ const DELAY_CTA_S = 0.9;
 
 const DEFAULT_TAGLINE = "I’m Shivi, your car buying advisor";
 
+const SHIVI_DISCOUNT_INR_DISPLAY = `₹${SHIVI_UNLOCK_EXCLUSIVE_DISCOUNT_INR.toLocaleString("en-IN")}`;
+
 /** `Save ₹27,077` → `-₹27,077`. Falls back to the original string. */
 function toDiscountLabel(saveAmountDisplay: string): string {
   const match = saveAmountDisplay.match(/Save\s+(.+)/i);
@@ -76,6 +78,14 @@ export function ShiviDiscountUnlockedPage() {
       colours[0] ??
       undefined
     );
+  }, [contextCar, contextColourIdParam]);
+
+  /** Match `/shivi/unlocked?car=&colour=` with a valid colour id (not car-only fallback). */
+  const hasCarColourDeepLink = useMemo(() => {
+    if (!contextCar || !contextColourIdParam) {
+      return false;
+    }
+    return contextCar.mmv.colours.some((c) => c.id === contextColourIdParam);
   }, [contextCar, contextColourIdParam]);
 
   const t = (delayS: number) => ({
@@ -154,11 +164,21 @@ export function ShiviDiscountUnlockedPage() {
               />
             </div>
             <div className="shivi-intro__greeting">
-              <p className="shivi-intro__hi">Hi Sharath</p>
-              <p className="shivi-intro__tagline">{DEFAULT_TAGLINE}</p>
-              <p className="shivi-intro__context-sub">
-                {`I've unlocked your price on the ${shortModelName}.`}
+              <p className="shivi-intro__hi">
+                {hasCarColourDeepLink
+                  ? "Your deal is ready, Sharath"
+                  : "Hi Sharath"}
               </p>
+              <p className="shivi-intro__tagline">
+                {hasCarColourDeepLink
+                  ? `I’ve unlocked a ${SHIVI_DISCOUNT_INR_DISPLAY} discount just for you.`
+                  : DEFAULT_TAGLINE}
+              </p>
+              {hasCarColourDeepLink ? null : (
+                <p className="shivi-intro__context-sub">
+                  {`I've unlocked your price on the ${shortModelName}.`}
+                </p>
+              )}
             </div>
           </div>
         </motion.div>
@@ -276,7 +296,11 @@ export function ShiviDiscountUnlockedPage() {
         >
           <div className="shivi-unlocked__expiry" role="note">
             <ClockIcon />
-            <p>Your exclusive price expires in 24 hours</p>
+            <p>
+              {hasCarColourDeepLink
+                ? `Your ${SHIVI_DISCOUNT_INR_DISPLAY} discount expires in 24 hours`
+                : "Your exclusive price expires in 24 hours"}
+            </p>
           </div>
           <div className="shivi-intro__cta-panel">
             <button
@@ -291,7 +315,8 @@ export function ShiviDiscountUnlockedPage() {
               className="shivi-unlocked__callback-link"
               onClick={goCallback}
             >
-              Get a callback
+              <span className="shivi-unlocked__callback-prefix">Have questions?</span>
+              <span className="shivi-unlocked__callback-action">Get a callback</span>
             </button>
           </div>
         </motion.footer>
