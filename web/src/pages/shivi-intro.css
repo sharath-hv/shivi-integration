@@ -344,7 +344,7 @@
 }
 
 .shivi-intro__help-block--context .shivi-intro__section-label {
-  margin: 32px auto 20px;
+  margin: 32px auto 12px;
   width: 100%;
   max-width: min(var(--content-inner-max), calc(100% - 2 * clamp(12px, 4vw, 20px)));
   font-size: 14px;
