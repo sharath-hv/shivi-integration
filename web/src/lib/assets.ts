@@ -21,4 +21,6 @@ export const ASSETS = {
   lock: publicUrl("/assets/Lock.svg"),
   /** MMV hero car — Figma 253-12803 */
   mmvCar: publicUrl("/assets/mmv-car.png"),
+  /** Call summary — Figma 348:1547 (Claim / document icon) */
+  callSummary: publicUrl("/assets/summary.svg"),
 } as const;
