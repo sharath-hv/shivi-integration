@@ -11,7 +11,7 @@ type ShiviListingStripProps = {
 
 export function ShiviListingStrip({ variant = "default" }: ShiviListingStripProps) {
   const isDrive = variant === "drive";
-  const { isScrolled } = useScrollPosition(120);
+  const { isScrolled } = useScrollPosition(50);
 
   if (isDrive) {
     return (
@@ -25,18 +25,18 @@ export function ShiviListingStrip({ variant = "default" }: ShiviListingStripProp
         <motion.div 
           className="shivi-strip--drive__inner"
           layout
-          transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
         >
           <motion.div 
             className="shivi-strip--drive__avatar" 
             aria-hidden
             layout
-            transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
           >
             <motion.div 
               className="shivi-strip--drive__avatar-photo"
               layout
-              transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
             >
               <AssetIcon
                 src={ASSETS.shiviAvatar}
@@ -58,10 +58,10 @@ export function ShiviListingStrip({ variant = "default" }: ShiviListingStripProp
             <motion.div 
               key={isScrolled ? "compact" : "full"}
               className="shivi-strip--drive__copy"
-              initial={{ opacity: 0, y: 8 }}
+              initial={{ opacity: 0, y: 4 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -8 }}
-              transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
+              exit={{ opacity: 0, y: -4 }}
+              transition={{ duration: 0.15, ease: [0.22, 1, 0.36, 1] }}
             >
               {isScrolled ? (
                 <Link to="/shivi" className="shivi-strip--drive__link shivi-strip--drive__link--compact">
