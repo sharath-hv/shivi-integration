@@ -4,6 +4,7 @@ import { motion, useReducedMotion } from "framer-motion";
 import { AssetIcon } from "../components/AssetIcon";
 import { MobileShell } from "../components/MobileShell";
 import { navigateToShiviLandingWithCallbackScheduled } from "../lib/shiviLandingNavigation";
+import { pickShiviBackPathState } from "../lib/shiviIntroContext";
 import { ASSETS } from "../lib/assets";
 import "./shivi-callback-scheduled.css";
 
@@ -19,6 +20,8 @@ const SUCCESS_ILLUSTRATION_PX = 104;
 export type ShiviCallbackScheduledState = {
   dateLabel: string;
   slotLabel: string;
+  /** Forwarded from Shivi intro when entering schedule from MM overview flow. */
+  backPath?: string;
 };
 
 function BackIcon() {
@@ -86,11 +89,14 @@ export function ShiviCallbackScheduledPage() {
 
   const chipText = `${dateLabel} · ${slotLabel}`;
 
-  const goToShiviWithScheduledNotice = () =>
+  const goToShiviWithScheduledNotice = () => {
+    const persist = pickShiviBackPathState(location.state);
     navigateToShiviLandingWithCallbackScheduled(navigate, {
       replace: true,
       search: location.search,
+      backPath: persist?.backPath,
     });
+  };
 
   const t = (delayS: number) => ({
     duration: reduceMotion ? 0 : REVEAL_S,

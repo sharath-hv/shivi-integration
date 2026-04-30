@@ -9,6 +9,9 @@ export type FlowRouteItem = {
 
 const sampleCarId = showroomCars[0]?.id ?? "toyota-hyryder";
 
+/** MM overview screen — URL and Shivi `location.state.backPath` target. */
+export const MM_OVERVIEW_PATH = "/mm-overview";
+
 /** Prototype: switch between listing and MMV without typing URLs */
 export const FLOW_ROUTES: FlowRouteItem[] = [
   {
@@ -22,5 +25,11 @@ export const FLOW_ROUTES: FlowRouteItem[] = [
     path: `/cars/${sampleCarId}`,
     label: "MMV",
     description: "Car details (sample)",
+  },
+  {
+    id: "mm-overview",
+    path: MM_OVERVIEW_PATH,
+    label: "MM overview",
+    description: "Model overview",
   },
 ];

@@ -253,41 +253,44 @@
 .shivi-strip--compact {
   max-width: 280px !important;
   width: fit-content !important;
-  border-radius: 12px 12px 0 0;
+  border-radius: 32px;
   
-  /* Center with dynamic width using transform */
+  /* Enhanced centering with multiple fallbacks */
+  position: fixed !important;
   left: 50% !important;
   right: auto !important;
   margin-left: 0 !important;
   margin-right: 0 !important;
   
-  /* Transform-based centering for dynamic width */
-  transform: translateX(-50%) translateZ(0);
+  /* Transform-based centering for dynamic width with higher specificity */
+  transform: translateX(-50%) translateZ(0) !important;
   
   border-left: 1px solid #e8e8e8;
   border-right: 1px solid #e8e8e8;
 }
 
 .shivi-strip--compact .shivi-strip--drive__inner {
-  padding: 8px 16px;
+  padding: 8px 16px 8px 8px;
   gap: 12px;
   /* Ensure exact 48px height: 8px + 32px + 8px = 48px */
   min-height: 48px;
   max-height: 48px;
   align-items: center;
+  border-radius: 32px;
+  background: rgba(255, 255, 255, 0.95);
 }
 
 .shivi-strip--compact .shivi-strip--drive__avatar {
-  width: 32px;
+  width: 48px;
   height: 32px;
 }
 
 .shivi-strip--compact .shivi-strip--drive__avatar-photo {
-  border-radius: 8px;
+  border-radius: 16px;
 }
 
 .shivi-strip--compact .shivi-strip--drive__avatar-img {
-  width: 32px;
+  width: 48px;
   height: 32px;
 }
 
@@ -309,8 +312,8 @@
 }
 
 .shivi-strip--drive__link--compact {
-  font-size: 13px;
-  line-height: 18px;
+  font-size: 14px;
+  line-height: 20px;
   font-weight: 500;
   margin: 0;
   text-decoration: none;
@@ -333,19 +336,23 @@
   .shivi-strip--compact {
     max-width: 240px !important;
     width: fit-content !important;
+    left: 50% !important;
+    transform: translateX(-50%) translateZ(0) !important;
   }
   
   .shivi-strip--compact .shivi-strip--drive__inner {
-    padding: 8px 14px;
+    padding: 8px 16px 8px 8px;
     gap: 10px;
     min-height: 48px;
     max-height: 48px;
     align-items: center;
+    border-radius: 32px;
+    background: rgba(255, 255, 255, 0.95);
   }
   
   .shivi-strip--drive__link--compact {
-    font-size: 12px;
-    line-height: 16px;
+    font-size: 13px;
+    line-height: 18px;
   }
 }
 
@@ -354,13 +361,17 @@
   .shivi-strip--compact {
     max-width: 220px !important;
     width: fit-content !important;
+    left: 50% !important;
+    transform: translateX(-50%) translateZ(0) !important;
   }
   
   .shivi-strip--compact .shivi-strip--drive__inner {
-    padding: 8px 12px;
+    padding: 8px 16px 8px 8px;
     gap: 8px;
     min-height: 48px;
     max-height: 48px;
     align-items: center;
+    border-radius: 32px;
+    background: rgba(255, 255, 255, 0.95);
   }
 }

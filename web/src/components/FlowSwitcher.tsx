@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useId, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { NavLink, useLocation } from "react-router-dom";
-import { FLOW_ROUTES } from "../lib/flow-routes";
+import { FLOW_ROUTES, MM_OVERVIEW_PATH } from "../lib/flow-routes";
 import "./flow-switcher.css";
 
 export function FlowSwitcher() {
@@ -106,7 +106,7 @@ export function FlowSwitcher() {
                         className={({ isActive }) =>
                           "flow-switcher__link" + (isActive ? " flow-switcher__link--active" : "")
                         }
-                        end={flow.path === "/cars"}
+                        end={flow.path === "/cars" || flow.path === MM_OVERVIEW_PATH}
                         onClick={close}
                       >
                         <span className="flow-switcher__link-label">{flow.label}</span>

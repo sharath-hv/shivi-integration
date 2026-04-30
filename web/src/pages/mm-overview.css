@@ -1,0 +1,258 @@
+/* MM overview — Figma node 412:2971 */
+
+.mobile-shell--mm-overview {
+  background: #121212;
+}
+
+.mobile-shell--mm-overview .mobile-shell__inner {
+  background: #121212;
+  box-shadow: 0 0 0 1px #1e1e1e;
+}
+
+.mm-overview {
+  min-height: 100vh;
+  min-height: 100dvh;
+  padding: 0 0 calc(32px + env(safe-area-inset-bottom));
+  color: #ffffff;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: clip;
+}
+
+.mm-overview__header {
+  padding: calc(56px + env(safe-area-inset-top, 0px)) 20px 0;
+  text-align: center;
+}
+
+.mm-overview__title {
+  margin: 0;
+  font-size: 24px;
+  line-height: 32px;
+  font-weight: 600;
+  letter-spacing: -0.1px;
+  color: #ffffff;
+  max-width: 360px;
+  margin-inline: auto;
+}
+
+.mm-overview__carousel-wrap {
+  margin-top: 20px;
+}
+
+.mm-overview__carousel {
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  touch-action: pan-x;
+}
+
+.mm-overview__carousel::-webkit-scrollbar {
+  display: none;
+}
+
+.mm-overview__carousel-track {
+  display: flex;
+  gap: 12px;
+  padding: 0 max(20px, calc(50% - 156px));
+  box-sizing: border-box;
+}
+
+.mm-overview__slide {
+  flex: 0 0 312px;
+  scroll-snap-align: center;
+  scroll-snap-stop: always;
+}
+
+.mm-overview__card {
+  height: 234px;
+  border-radius: 12px;
+  background: #ffffff;
+  overflow: hidden;
+}
+
+.mm-overview__card-image-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  overflow: hidden;
+}
+
+.mm-overview__card-image {
+  width: 100%;
+  height: 120%;
+  max-width: none;
+  object-fit: cover;
+  object-position: center 45%;
+}
+
+.mm-overview__dots {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  margin-top: 20px;
+}
+
+.mm-overview__dot {
+  position: relative;
+  width: 16px;
+  height: 44px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.mm-overview__dot::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 8px;
+  height: 4px;
+  border-radius: 16px;
+  background: #ffffff;
+  opacity: 0.5;
+  transition: opacity 0.15s ease, width 0.15s ease;
+}
+
+.mm-overview__dot--active {
+  width: 32px;
+}
+
+.mm-overview__dot--active::before {
+  width: 32px;
+  opacity: 1;
+}
+
+.mm-overview__price {
+  margin: 24px 20px 0;
+  padding: 16px 15px;
+  background: #171717;
+  border: 1px solid #2e2e2e;
+  border-radius: 12px;
+}
+
+.mm-overview__price-intro {
+  margin: 0;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400;
+  color: #ffffff;
+  text-align: center;
+}
+
+.mm-overview__price-row {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+  margin-top: 12px;
+  justify-content: flex-start;
+}
+
+.mm-overview__price-acko {
+  font-size: 20px;
+  line-height: 28px;
+  font-weight: 600;
+  letter-spacing: -0.1px;
+  color: #ffffff;
+}
+
+.mm-overview__price-dealer-wrap {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  min-height: 24px;
+}
+
+.mm-overview__price-dealer {
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+  color: #a6a6a6;
+  text-decoration: line-through;
+  text-decoration-color: #a6a6a6;
+}
+
+.mm-overview__price-save {
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400;
+  color: #8ce99a;
+}
+
+.mm-overview__express {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 12px;
+  min-height: 24px;
+}
+
+.mm-overview__bolt {
+  flex-shrink: 0;
+  color: #b191ed;
+}
+
+.mm-overview__express-copy {
+  margin: 0;
+  font-size: 12px;
+  line-height: 18px;
+  font-weight: 400;
+}
+
+.mm-overview__express-em {
+  color: #b191ed;
+}
+
+.mm-overview__express-by {
+  color: #ffffff;
+}
+
+.mm-overview__express-date {
+  color: #ffffff;
+  font-weight: 500;
+}
+
+.mm-overview__divider {
+  height: 1px;
+  margin: 16px 0 0;
+  background: #2b2b2b;
+}
+
+.mm-overview__cta-primary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-top: 16px;
+  padding: 12px 16px;
+  min-height: 48px;
+  border: none;
+  border-radius: 12px;
+  background: #ffffff;
+  color: #121212;
+  font-family: inherit;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 500;
+  text-align: center;
+  cursor: pointer;
+}
+
+.mm-overview__cta-primary:hover {
+  background: #f5f5f5;
+}
+
+.mm-overview__cta-primary:focus-visible {
+  outline: 2px solid #1b73e8;
+  outline-offset: 2px;
+}

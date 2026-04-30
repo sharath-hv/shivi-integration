@@ -2,6 +2,7 @@ import { useMemo, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { motion, useReducedMotion } from "framer-motion";
 import { MobileShell } from "../components/MobileShell";
+import { pickShiviBackPathState } from "../lib/shiviIntroContext";
 import type { ShiviCallbackScheduledState } from "./ShiviCallbackScheduledPage";
 import "./shivi-schedule-callback.css";
 
@@ -62,7 +63,7 @@ const SLOTS: SlotOption[] = [
 
 export function ShiviScheduleCallbackPage() {
   const navigate = useNavigate();
-  const { search } = useLocation();
+  const location = useLocation();
   const reduceMotion = useReducedMotion();
 
   const days = useMemo(() => buildDayOptions(new Date()), []);
@@ -72,11 +73,13 @@ export function ShiviScheduleCallbackPage() {
   const goToScheduledConfirmation = () => {
     const day = days.find((d) => d.id === selectedDay);
     const slot = SLOTS.find((s) => s.id === selectedSlot);
+    const persist = pickShiviBackPathState(location.state);
     const state: ShiviCallbackScheduledState = {
       dateLabel: day?.dateLabel ?? "",
       slotLabel: slot?.label ?? "",
+      ...persist,
     };
-    navigate({ pathname: "/shivi/callback-scheduled", search }, { state });
+    navigate({ pathname: "/shivi/callback-scheduled", search: location.search }, { state });
   };
 
   const t = (delayS: number) => ({
@@ -100,7 +103,13 @@ export function ShiviScheduleCallbackPage() {
           <button
             type="button"
             className="shivi-schedule__back"
-            onClick={() => navigate({ pathname: "/shivi", search })}
+            onClick={() => {
+              const persist = pickShiviBackPathState(location.state);
+              navigate(
+                { pathname: "/shivi", search: location.search },
+                persist ? { state: persist } : undefined,
+              );
+            }}
             aria-label="Go back"
           >
             <BackIcon />
@@ -188,7 +197,13 @@ export function ShiviScheduleCallbackPage() {
             <button
               type="button"
               className="shivi-schedule__sooner-link"
-              onClick={() => navigate({ pathname: "/shivi/confirmation", search })}
+            onClick={() => {
+              const persist = pickShiviBackPathState(location.state);
+              navigate(
+                { pathname: "/shivi/confirmation", search: location.search },
+                persist ? { state: persist } : undefined,
+              );
+            }}
             >
               Get a call right now
             </button>

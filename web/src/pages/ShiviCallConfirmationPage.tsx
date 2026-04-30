@@ -3,8 +3,8 @@ import { motion, useReducedMotion } from "framer-motion";
 import { AssetIcon } from "../components/AssetIcon";
 import { MobileShell } from "../components/MobileShell";
 import { ASSETS } from "../lib/assets";
-import { SHIVI_INTRO_CAR_QUERY } from "../lib/shiviIntroContext";
 import { navigateToShiviLandingWithCallbackScheduled } from "../lib/shiviLandingNavigation";
+import { pickShiviBackPathState, SHIVI_INTRO_CAR_QUERY } from "../lib/shiviIntroContext";
 import "./shivi-confirmation.css";
 
 const REVEAL_EASE: [number, number, number, number] = [0.25, 0.46, 0.45, 0.94];
@@ -38,11 +38,14 @@ export function ShiviCallConfirmationPage() {
   /** MMV flow sets ?car=<id> on the Shivi route; only then we unlock a price. */
   const isMmvFlow = Boolean(searchParams.get(SHIVI_INTRO_CAR_QUERY));
 
-  const goToShiviWithScheduledNotice = () =>
+  const goToShiviWithScheduledNotice = () => {
+    const persist = pickShiviBackPathState(location.state);
     navigateToShiviLandingWithCallbackScheduled(navigate, {
       replace: true,
       search: location.search,
+      backPath: persist?.backPath,
     });
+  };
 
   const handlePrimaryCta = () => {
     if (isMmvFlow) {

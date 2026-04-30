@@ -9,7 +9,7 @@ export const ASSETS = {
   expressDelivery: publicUrl("/assets/express-delivery.svg"),
   standardDelivery: publicUrl("/assets/standard-delivery.svg"),
   shortlist: publicUrl("/assets/Shortlist.svg"),
-  shiviAvatar: publicUrl("/assets/Shivi.png"),
+  shiviAvatar: publicUrl("/assets/Shivi_small.png"),
   onlineIndicator: publicUrl("/assets/online-indicator.svg"),
   shiviTileCarPrice: publicUrl("/assets/shivi-tile-car-price.svg"),
   shiviTileCompareCars: publicUrl("/assets/shivi-tile-compare-cars.svg"),

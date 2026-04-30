@@ -6,9 +6,12 @@ import { MobileShell } from "../components/MobileShell";
 import { getCarById } from "../data/cars";
 import { ASSETS } from "../lib/assets";
 import {
+  pickShiviBackPathState,
   SHIVI_INTRO_CAR_QUERY,
   SHIVI_INTRO_COLOUR_QUERY,
+  type ShiviIntroLocationState,
 } from "../lib/shiviIntroContext";
+import { MM_OVERVIEW_PATH } from "../lib/flow-routes";
 import "./shivi-intro.css";
 
 /** Figma 339:3802 “Here’s how I can help you” quad grid. */
@@ -58,9 +61,7 @@ const TAGLINE_CAR_COLOUR_CONTEXT = "I’m Shivi, your car buying specialist";
 const CONTEXT_SUB_CAR_COLOUR =
   "There’s a discount on this car only I can unlock.";
 
-export type ShiviIntroLocationState = {
-  showCallbackScheduled?: boolean;
-};
+export type { ShiviIntroLocationState } from "../lib/shiviIntroContext";
 
 export function ShiviIntroPage() {
   const navigate = useNavigate();
@@ -107,9 +108,11 @@ export function ShiviIntroPage() {
   useEffect(() => {
     const s = location.state as ShiviIntroLocationState | null;
     if (s?.showCallbackScheduled) {
+      const { showCallbackScheduled: _drop, ...rest } = s;
+      const nextState = Object.keys(rest).length > 0 ? rest : undefined;
       navigate(
         { pathname: location.pathname, search: location.search },
-        { replace: true, state: {} },
+        { replace: true, state: nextState },
       );
     }
   }, [location.pathname, location.search, location.state, navigate]);
@@ -123,13 +126,26 @@ export function ShiviIntroPage() {
   const fromBottom = { opacity: 0, y: reduceMotion ? 0 : 8 };
   const toVisible = { opacity: 1, y: 0 };
 
+  const backPath = (location.state as ShiviIntroLocationState | null)?.backPath;
+
   const goBack = () => {
+    if (backPath) {
+      navigate(backPath);
+      return;
+    }
     if (contextCarId) {
       navigate(`/cars/${contextCarId}`);
       return;
     }
     navigate("/cars");
   };
+
+  const backAriaLabel =
+    backPath === MM_OVERVIEW_PATH
+      ? "Back to MM overview"
+      : contextCarId
+        ? "Back to car details"
+        : "Back to showroom";
 
   const shiviFlowSearch = location.search;
 
@@ -147,7 +163,7 @@ export function ShiviIntroPage() {
               type="button"
               className="shivi-intro__back"
               onClick={goBack}
-              aria-label="Back to showroom"
+              aria-label={backAriaLabel}
             >
               <BackIcon />
             </button>
@@ -338,18 +354,26 @@ export function ShiviIntroPage() {
               <button
                 type="button"
                 className="shivi-intro__cta shivi-intro__cta--primary"
-                onClick={() =>
-                  navigate({ pathname: "/shivi/confirmation", search: shiviFlowSearch })
-                }
+                onClick={() => {
+                  const persist = pickShiviBackPathState(location.state);
+                  navigate(
+                    { pathname: "/shivi/confirmation", search: shiviFlowSearch },
+                    persist ? { state: persist } : undefined,
+                  );
+                }}
               >
                 Get a call right now
               </button>
               <button
                 type="button"
                 className="shivi-intro__cta-link"
-                onClick={() =>
-                  navigate({ pathname: "/shivi/schedule-callback", search: shiviFlowSearch })
-                }
+                onClick={() => {
+                  const persist = pickShiviBackPathState(location.state);
+                  navigate(
+                    { pathname: "/shivi/schedule-callback", search: shiviFlowSearch },
+                    persist ? { state: persist } : undefined,
+                  );
+                }}
               >
                 Schedule a callback
               </button>
