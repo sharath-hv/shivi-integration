@@ -44,8 +44,7 @@ export function ShiviListingStrip({ variant = "default" }: ShiviListingStripProp
             <div className={`shivi-strip--drive__content ${isCompact ? "shivi-strip--drive__content--compact" : ""}`}>
               {isCompact ? (
                 <Link to="/shivi" className="shivi-strip--drive__link shivi-strip--drive__link--compact">
-                  Better price?
-                  <ChevronRightIcon className="shivi-strip--drive__chevron" />
+                  Talk to Shivi
                 </Link>
               ) : (
                 <>
