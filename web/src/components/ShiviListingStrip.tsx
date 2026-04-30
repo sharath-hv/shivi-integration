@@ -20,22 +20,18 @@ export function ShiviListingStrip({ variant = "default" }: ShiviListingStripProp
         initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-        layout
       >
-        <motion.div 
+        <motion.div
           className="shivi-strip--drive__inner"
-          layout
           transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
         >
-          <motion.div 
-            className="shivi-strip--drive__avatar" 
+          <motion.div
+            className="shivi-strip--drive__avatar"
             aria-hidden
-            layout
             transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
           >
-            <motion.div 
+            <motion.div
               className="shivi-strip--drive__avatar-photo"
-              layout
               transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
             >
               <AssetIcon

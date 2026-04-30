@@ -182,17 +182,22 @@
 }
 
 /* Compact mode styles - Figma 333:75366 pill design */
-.shivi-strip--compact {
+.shivi-strip--drive.shivi-strip--compact {
+  /* Float 20px above the viewport bottom (plus safe area). Centre via margin — avoids conflicting with motion transforms on Y. */
+  bottom: calc(20px + env(safe-area-inset-bottom, 0px));
+  left: unset;
+  right: unset;
+  margin-left: auto;
+  margin-right: auto;
+  width: 140px;
   max-width: 140px !important;
   height: 50px !important;
   border-radius: 32px !important;
-  left: 50%;
-  right: auto;
-  transform: translateX(-50%);
   border: 1px solid #e0e0e0;
+  border-bottom: 1px solid #e0e0e0;
   box-shadow: 0 6px 12px -2px rgba(54, 53, 76, 0.08);
   padding: 0 !important;
-  padding-bottom: env(safe-area-inset-bottom) !important;
+  padding-bottom: 0 !important;
 }
 
 .shivi-strip--compact .shivi-strip--drive__inner {
@@ -253,7 +258,8 @@
 
 /* Responsive adjustments for compact mode */
 @media (max-width: 360px) {
-  .shivi-strip--compact {
+  .shivi-strip--drive.shivi-strip--compact {
+    width: 130px;
     max-width: 130px !important;
     height: 46px !important;
   }
