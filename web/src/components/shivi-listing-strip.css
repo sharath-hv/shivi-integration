@@ -167,12 +167,16 @@
   justify-content: center;
   will-change: transform;
   transform: translateZ(0);
+  width: 100%;
 }
 
 /* Compact content height adjustment */
 .shivi-strip--compact .shivi-strip--drive__content {
   min-height: 32px;
   max-height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
 }
 
 /* Smooth content transitions using CSS animations */
@@ -192,20 +196,22 @@
 }
 
 .shivi-strip--drive__link--compact {
-  position: absolute;
-  top: 50%;
-  left: 0;
-  right: 0;
-  transform: translateY(-50%) scale(0.95);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
   opacity: 0;
+  transform: scale(0.95);
   transition: opacity 0.15s cubic-bezier(0.22, 1, 0.36, 1) 0.05s,
               transform 0.15s cubic-bezier(0.22, 1, 0.36, 1) 0.05s;
   pointer-events: none;
+  /* Ensure full width usage within flex container */
+  width: 100%;
+  justify-content: flex-start;
 }
 
 .shivi-strip--compact .shivi-strip--drive__link--compact {
   opacity: 1;
-  transform: translateY(-50%) scale(1);
+  transform: scale(1);
   pointer-events: auto;
 }
 
@@ -226,6 +232,7 @@
   font-weight: 500;
   color: #1b73e8;
   text-decoration: none;
+  width: max-content;
 }
 
 .shivi-strip--drive__link:hover {
@@ -296,6 +303,9 @@
   padding-top: 0;
   display: flex;
   align-items: center;
+  flex: 1;
+  min-width: 0;
+  width: 100%;
 }
 
 .shivi-strip--drive__link--compact {
@@ -303,8 +313,19 @@
   line-height: 18px;
   font-weight: 500;
   margin: 0;
-  opacity: 1;
-  transform: translateY(0);
+  text-decoration: none;
+  color: #1b73e8;
+  white-space: nowrap;
+}
+
+.shivi-strip--drive__link--compact:hover {
+  text-decoration: underline;
+}
+
+.shivi-strip--drive__link--compact:focus-visible {
+  outline: 2px solid #1b73e8;
+  outline-offset: 2px;
+  border-radius: 4px;
 }
 
 /* Responsive adjustments for compact mode */
