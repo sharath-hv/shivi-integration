@@ -180,3 +180,63 @@
 .shivi-strip--drive__chevron {
   margin-top: 1px;
 }
+
+/* Compact mode styles for scroll state */
+.shivi-strip--compact {
+  max-width: 280px !important;
+  border-radius: 24px 24px 0 0;
+  left: 50%;
+  right: auto;
+  transform: translateX(-50%);
+  border-left: 1px solid #e8e8e8;
+  border-right: 1px solid #e8e8e8;
+}
+
+.shivi-strip--compact .shivi-strip--drive__inner {
+  padding: 12px 16px;
+  gap: 12px;
+}
+
+.shivi-strip--compact .shivi-strip--drive__avatar {
+  width: 32px;
+  height: 32px;
+}
+
+.shivi-strip--compact .shivi-strip--drive__avatar-photo {
+  border-radius: 8px;
+}
+
+.shivi-strip--compact .shivi-strip--drive__avatar-online {
+  width: 8px;
+  height: 8px;
+  top: -1px;
+  right: -1px;
+}
+
+.shivi-strip--compact .shivi-strip--drive__copy {
+  padding-top: 4px;
+}
+
+.shivi-strip--drive__link--compact {
+  font-size: 13px;
+  line-height: 18px;
+  font-weight: 500;
+  margin: 0;
+}
+
+/* Responsive adjustments for compact mode */
+@media (max-width: 360px) {
+  .shivi-strip--compact {
+    max-width: 240px !important;
+  }
+  
+  .shivi-strip--compact .shivi-strip--drive__inner {
+    padding: 10px 14px;
+    gap: 10px;
+  }
+  
+  .shivi-strip--drive__link--compact {
+    font-size: 12px;
+    line-height: 16px;
+  }
+}
