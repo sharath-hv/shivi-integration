@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { AssetIcon } from "./AssetIcon";
 import { ASSETS } from "../lib/assets";
-import { useScrollPosition } from "../hooks/useScrollPosition";
+import { useScrollDirectionCompact } from "../hooks/useScrollPosition";
 import "./shivi-listing-strip.css";
 
 type ShiviListingStripProps = {
@@ -11,57 +11,41 @@ type ShiviListingStripProps = {
 
 export function ShiviListingStrip({ variant = "default" }: ShiviListingStripProps) {
   const isDrive = variant === "drive";
-  const { isScrolled } = useScrollPosition(50);
+  const { isCompact } = useScrollDirectionCompact();
 
   if (isDrive) {
     return (
       <motion.footer
-        className={`shivi-strip shivi-strip--drive ${isScrolled ? "shivi-strip--compact" : ""}`}
+        className={`shivi-strip shivi-strip--drive ${isCompact ? "shivi-strip--compact" : ""}`}
         initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
       >
-        <motion.div
-          className="shivi-strip--drive__inner"
-          transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
-        >
-          <motion.div
-            className="shivi-strip--drive__avatar"
-            aria-hidden
-            transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
-          >
-            <motion.div
-              className="shivi-strip--drive__avatar-photo"
-              transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
-            >
+        <div className="shivi-strip--drive__inner">
+          <div className="shivi-strip--drive__avatar" aria-hidden>
+            <div className="shivi-strip--drive__avatar-photo">
               <AssetIcon
                 src={ASSETS.shiviAvatar}
                 alt=""
-                width={isScrolled ? 32 : 48}
-                height={isScrolled ? 32 : 48}
+                width={48}
+                height={48}
                 className="shivi-strip--drive__avatar-img"
               />
-            </motion.div>
+            </div>
             <AssetIcon
               src={ASSETS.onlineIndicator}
               alt=""
-              width={isScrolled ? 8 : 10}
-              height={isScrolled ? 8 : 10}
+              width={10}
+              height={10}
               className="shivi-strip--drive__avatar-online"
             />
-          </motion.div>
-          <AnimatePresence mode="wait">
-            <motion.div 
-              key={isScrolled ? "compact" : "full"}
-              className="shivi-strip--drive__copy"
-              initial={{ opacity: 0, y: 4 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -4 }}
-              transition={{ duration: 0.15, ease: [0.22, 1, 0.36, 1] }}
-            >
-              {isScrolled ? (
+          </div>
+          <div className="shivi-strip--drive__copy">
+            <div className={`shivi-strip--drive__content ${isCompact ? "shivi-strip--drive__content--compact" : ""}`}>
+              {isCompact ? (
                 <Link to="/shivi" className="shivi-strip--drive__link shivi-strip--drive__link--compact">
-                  Talk to Shivi
+                  Better price?
+                  <ChevronRightIcon className="shivi-strip--drive__chevron" />
                 </Link>
               ) : (
                 <>
@@ -72,9 +56,9 @@ export function ShiviListingStrip({ variant = "default" }: ShiviListingStripProp
                   </Link>
                 </>
               )}
-            </motion.div>
-          </AnimatePresence>
-        </motion.div>
+            </div>
+          </div>
+        </div>
       </motion.footer>
     );
   }

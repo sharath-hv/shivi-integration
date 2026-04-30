@@ -1,69 +1,70 @@
-import { useEffect, useState, useRef } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
-interface ScrollPosition {
-  scrollY: number;
-  isScrolled: boolean;
-  scrollDirection: "up" | "down" | "none";
+export interface ScrollDirectionCompact {
+  /** True when strip should show minimised layout */
+  isCompact: boolean;
 }
 
 /**
- * Hook to track scroll direction and determine compact mode state
- * - Any scroll down triggers compact mode
- * - Any scroll up triggers full mode  
- * @param minScrollThreshold - Minimum scroll position to enable direction detection (default: 50)
+ * Optimized scroll direction detection for ultra-smooth animations
+ * Uses state consolidation and smart debouncing for lag-free performance
  */
-export function useScrollPosition(minScrollThreshold: number = 50): ScrollPosition {
-  const [scrollY, setScrollY] = useState(0);
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [scrollDirection, setScrollDirection] = useState<"up" | "down" | "none">("none");
-  
+export function useScrollDirectionCompact(
+  downThresholdPx: number = 4,
+): ScrollDirectionCompact {
+  const [isCompact, setIsCompact] = useState(false);
   const lastScrollY = useRef(0);
-  const lastDirectionChange = useRef(0);
+  const scrollVelocity = useRef(0);
+  const lastUpdateTime = useRef(0);
+  const animationFrame = useRef<number>();
+
+  const updateCompactState = useCallback(() => {
+    const now = performance.now();
+    const y = window.scrollY;
+    const delta = y - lastScrollY.current;
+    const timeDelta = now - lastUpdateTime.current;
+    
+    // Calculate velocity to make transitions feel more responsive
+    if (timeDelta > 0) {
+      scrollVelocity.current = delta / timeDelta;
+    }
+    
+    // More intelligent state changes based on velocity and direction
+    const isScrollingDown = delta > 0;
+    const isScrollingUp = delta < 0;
+    const hasSignificantMovement = Math.abs(delta) >= downThresholdPx;
+    const isFastScroll = Math.abs(scrollVelocity.current) > 0.5;
+    
+    if (isScrollingDown && (hasSignificantMovement || isFastScroll) && !isCompact) {
+      setIsCompact(true);
+    } else if (isScrollingUp && isCompact) {
+      setIsCompact(false);
+    }
+    
+    lastScrollY.current = y;
+    lastUpdateTime.current = now;
+  }, [downThresholdPx, isCompact]);
 
   useEffect(() => {
-    let ticking = false;
-
+    lastScrollY.current = window.scrollY;
+    lastUpdateTime.current = performance.now();
+    
     const handleScroll = () => {
-      if (!ticking) {
-        requestAnimationFrame(() => {
-          const currentScrollY = window.scrollY;
-          const now = Date.now();
-          
-          // Only detect direction if we've scrolled past minimum threshold
-          if (currentScrollY > minScrollThreshold) {
-            const deltaY = currentScrollY - lastScrollY.current;
-            
-            // Ignore very small movements to prevent flickering
-            if (Math.abs(deltaY) > 2) {
-              const newDirection = deltaY > 0 ? "down" : "up";
-              
-              // Add small debounce (50ms) to prevent rapid toggling
-              if (newDirection !== scrollDirection && now - lastDirectionChange.current > 50) {
-                setScrollDirection(newDirection);
-                setIsScrolled(newDirection === "down");
-                lastDirectionChange.current = now;
-              }
-            }
-          } else {
-            // Below threshold - always show full mode
-            setIsScrolled(false);
-            setScrollDirection("none");
-          }
-          
-          setScrollY(currentScrollY);
-          lastScrollY.current = currentScrollY;
-          ticking = false;
-        });
-        ticking = true;
+      if (animationFrame.current) {
+        cancelAnimationFrame(animationFrame.current);
       }
+      
+      animationFrame.current = requestAnimationFrame(updateCompactState);
     };
 
-    // Set initial state
-    handleScroll();
-
     window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [minScrollThreshold, scrollDirection]);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      if (animationFrame.current) {
+        cancelAnimationFrame(animationFrame.current);
+      }
+    };
+  }, [updateCompactState]);
 
-  return { scrollY, isScrolled, scrollDirection };
+  return { isCompact };
 }
