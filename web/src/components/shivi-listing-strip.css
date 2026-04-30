@@ -236,13 +236,22 @@
   margin-top: 1px;
 }
 
-/* Compact mode styles for scroll state - smooth CSS transitions */
+/* Compact mode styles for scroll state - perfectly centered */
 .shivi-strip--compact {
   max-width: 280px !important;
+  width: 280px !important;
   border-radius: 24px 24px 0 0;
+  
+  /* Perfect centering approach */
   left: 50% !important;
   right: auto !important;
-  transform: translateX(-50%);
+  margin-left: -140px !important; /* Half of 280px width */
+  margin-right: 0 !important;
+  
+  /* Alternative: transform-based (commented for now) */
+  /* transform: translateX(-50%) translateZ(0); */
+  transform: translateZ(0);
+  
   border-left: 1px solid #e8e8e8;
   border-right: 1px solid #e8e8e8;
 }
@@ -290,6 +299,9 @@
 @media (max-width: 360px) {
   .shivi-strip--compact {
     max-width: 240px !important;
+    width: 240px !important;
+    /* Perfect centering: 240px / 2 = 120px */
+    margin-left: -120px !important;
   }
   
   .shivi-strip--compact .shivi-strip--drive__inner {
@@ -300,5 +312,20 @@
   .shivi-strip--drive__link--compact {
     font-size: 12px;
     line-height: 16px;
+  }
+}
+
+/* Extra small screens - ensure centering */
+@media (max-width: 320px) {
+  .shivi-strip--compact {
+    max-width: 220px !important;
+    width: 220px !important;
+    /* Perfect centering: 220px / 2 = 110px */
+    margin-left: -110px !important;
+  }
+  
+  .shivi-strip--compact .shivi-strip--drive__inner {
+    padding: 8px 12px;
+    gap: 8px;
   }
 }
